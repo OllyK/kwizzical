@@ -1,0 +1,10 @@
+/*
+Versions:
+
+CSS 2.1 is the most recent complete standard;
+CSS 3 is a "work in progress"
+but CSS 2.1 features aren't reliable anyway,
+so don't worry about versions - just test each feature as you add it.
+  1. Check browser support (http://caniuse.com/)
+  2. Degrade gracefully (polyfills etc.)
+*/

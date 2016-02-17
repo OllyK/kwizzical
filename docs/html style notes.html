@@ -1,0 +1,78 @@
+<!-- Page template: -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  lang="en-GB" xml:lang="en-GB">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Put Title Here</title>
+  </head>
+  <body>
+    <h1>Put Heading Here</h1>
+  </body>
+</html>
+
+<!-- If not exact, the validator might not spot errors correctly. -->
+
+
+<!-- Explanation: -->
+
+<!DOCTYPE html>
+<!-- Triggers standards mode in all browsers. -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+  lang="en-GB" xml:lang="en-GB">
+<!-- Tells spell checkers,  etc. what human language
+we are using - repeated for html and xhtml browsers. -->
+
+<meta charset="UTF-8"/>
+<!-- Does NOT tell the browser that the page uses the UTF-8 charset:
+browsers usually use the response header in the server
+to specify content type (server.js line 70 in our case I think).
+This tag is for humans and offline tools(e.g validators)
+where there is no response header. -->
+
+"UTF-8"
+<!-- 8 = Byte Order Mark - I'm gonna be honest I don't understand this
+https://en.wikipedia.org/wiki/Byte_order_mark -->
+
+<title>Put Title Here</title>
+<!-- Appears in the browser title bar (current standards insist on having this). -->
+
+
+
+
+
+
+<!-- Tags -->
+
+
+<!-- Images -->
+<img src="img/placeholderkitten.jpg" /> <!-- Note the self-closing tag -->
+
+
+<!-- HTML5 sectioning tags -->
+<!--like <div>, new in HTML5 -->
+<header> <footer> <nav> <main> <section> <article> <aside> <figure>
+
+
+<!-- Void elements -->
+<!-- In order to be compatible with the polyglot standard,
+void elements(always empty) must be SELF-CLOSING -->
+area base br img input keygen link meta param source track wbr
+
+<!-- Everything else should be explicitly closed -->
+<!-- e.g. -->
+<script src="do.js"></script>
+<!-- this is NOT a void tag as it can have content inside -->
+
+
+<!-- Links -->
+<a href="url.com">Description</a> <!-- External link -->
+<a href="dir/page.html">Description</a> <!-- Internal page link -->
+
+
+<!-- Style tag -->
+<style> em { color: red; } </style>
+<!-- Goes against separating style to the stylesheet -
+we should probably not use this -->
