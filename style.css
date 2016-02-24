@@ -1,14 +1,50 @@
 /*Copied off some website - don't tell anyone*/
 
 body {
-				padding: 20px;
-				font-family: Arial, Verdana, sans-serif;}
-			/* color name */
-			h1 {
-				color: DarkCyan;}
-			/* hex code */
-			h2 {
-				color: #ee3e80;}
-			/* rgb value */
-			p {
-				color: rgb(100,100,90);}
+	padding: 0;
+	margin: 0;
+	font-family: Arial, Verdana, sans-serif;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	background: green;
+}
+
+nav ul li {
+	display: inline-block;
+	list-style: none;
+	background: yellow;
+}
+
+img {
+	display: block;
+  margin: auto;
+}
+
+h1 {
+	text-align: center;
+	font-size: 200%;
+}
+
+h2 {
+color: #ee3e80;
+}
+
+p {
+	text-align: center;
+}
+
+#buttondiv {
+	margin: auto;
+	display: block;
+	text-align: center;
+}
