@@ -1,14 +1,14 @@
 body {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 100vh;
 	padding: 0;
 	margin: 0;
 	font-family: Arial, Verdana, sans-serif;
 }
 
-footer {
-	position: relative;
-	bottom: 0px;
-	width: 100%;
-}
+
 
 nav ul {
 	margin: 0;
@@ -77,4 +77,12 @@ background-color: #474240;
 
 #buttonGrid{
 	text-align: center;
+}
+
+footer {
+	flex: none;
+}
+
+.Site-content {
+  flex: 1;
 }
