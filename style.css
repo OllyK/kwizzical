@@ -5,8 +5,8 @@ body {
 }
 
 footer {
-	position: absolute;
-	bottom: 0;
+	position: relative;
+	bottom: 0px;
 	width: 100%;
 }
 
@@ -47,17 +47,34 @@ p {
 	text-align: center;
 }
 
-.grid {
-	display: grid;
-	grid-template-columns: 100px 10px;
-	margin: 50px;
+.button {
+height: 40px;
+width: 130px;
+margin-bottom: 3%;
+background-color: #7C8082;
+font-size: 100%;
+color: white;
+font-family: 'Muli', sans-serif;
+border-radius: 5px;
+border-color: #ffffff;
 }
 
-.gridelement {
-	background-color: #127;
-	color: #fff;
-	border-radius: 5px;
-	padding: 20px;
-	font-size: 200%;
 
+.gridButton {
+height: 90px;
+width: 30%;
+background-color: #7C8082;
+font-size: 100%;
+color: white;
+     font-family: 'Muli', sans-serif;
+border-radius: 5px;
+margin-top:10px;
+}
+
+    .gridButton:hover {
+background-color: #474240;
+    }
+
+#buttonGrid{
+	text-align: center;
 }
