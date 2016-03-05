@@ -94,6 +94,10 @@ color: white;
 border-radius: 5px;
 border-color: #6949d7;
 margin-top:10px;
+text-decoration: none;
+font-size: 1.5em;
+text-shadow: 2px 2px 5px #111;
+white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
 }
@@ -103,11 +107,6 @@ font-family: 'Muli', sans-serif;
 font-weight: bold;
 border: 1px solid red;
 color: #eee;
-text-decoration: none;
-text-align: left;
-font-size: 1.5em;
-text-shadow: 2px 2px 5px #111;
-white-space: nowrap;
 }
 
 .gridButton:hover {
