@@ -73,33 +73,7 @@ text-align: center;
 	text-align: center;
 }
 
-.button {
-height: 40px;
-width: 130px;
-margin-bottom: 3%;
-background-color: #7C8082;
-font-size: 100%;
-color: white;
-font-family: 'Muli', sans-serif;
-border-radius: 5px;
-border-color: #ffffff;
-}
-
 .gridButton {
-height: 150px;
-width: 30%;
-background-color: #3cb53c;
-font-size: 100%;
-color: white;
-border-radius: 5px;
-border-color: #6949d7;
-margin-top:10px;
-text-decoration: none;
-font-size: 1.5em;
-text-shadow: 2px 2px 5px #111;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
 }
 
 .gridButton a {
@@ -111,10 +85,6 @@ color: #eee;
 
 .gridButton:hover {
 background-color: #60cd60;
-}
-
-#buttonGrid{
-	text-align: center;
 }
 
 footer {
