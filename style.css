@@ -1,76 +1,51 @@
+html {
+position: relative;
+min-height: 100%;
+}
+
 body {
-display: flex;
-flex-direction: column;
-height: 100%;
-min-height: 100vh;
-padding: 0;
-margin: 0;
-font-family: Arial, Verdana, sans-serif;
-background-color: #5a73ad;
+background: #FFFFFE;
+margin-bottom: 60px;
 }
 
-nav {
-height: 20px;
-background: #499b9b;
+.navbar .nav,
+.navbar .nav > li {
+float:none;
+display:inline-block;
+*display:inline; /* ie7 fix */
+*zoom:1; /* hasLayout ie7 trigger */
+vertical-align: top;
 }
 
-nav ul {
-margin: 0;
-padding: 0;
-text-align: center;
+.navbar-inner {
+text-align:right;
 }
 
-nav ul li {
-display: inline-block;
-list-style: none;
-text-decoration: none;
-border-left: 1px solid red;
-border-right: 1px solid red;
-}
+.navbar{
+background: #0099ff;
+min-height: 70px;
 
-nav ul li a {
-text-decoration: none;
-color: #152f6b;
 }
-
-nav ul li a:hover {
-color: #5a73ad;
-}
-
-#leftside {
-float: left;
-background-color: inherit;
-}
-
-#rightside {
-float: right;
-background-color: inherit;
-}
-
-img {
-display: block;
-margin: auto;
-}
-
-h1 {
-text-align: center;
-font-size: 200%;
-color: #eee;
-text-shadow: 2px 2px 5px #111;
-}
-
-h2 {
-color: #ee3e80;
-}
-
-p {
-text-align: center;
-}
-
 #buttondiv {
 	margin: auto;
 	display: block;
 	text-align: center;
+}
+
+.navbar-brand {
+height: 60px;
+padding: 20px 10px;
+}
+
+.navbar-brand img{
+margin-top: none;
+height:30px;
+width:148.5px;
+}
+
+.front_page_title{
+padding-bottom: 40px;
+color: black;
 }
 
 .button {
@@ -117,10 +92,51 @@ background-color: #60cd60;
 	text-align: center;
 }
 
-footer {
-	flex: none;
+.footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+display: table;
+table-layout: fixed;
+height: 60px;
+background: #0099ff;
 }
 
-.Site-content {
-  flex: 1;
+
+.footer span {
+color:#fff;
+float:right;
+padding:20px 20px 0 0;
 }
+
+@media screen and (max-width: 568px) {
+ .footer span {
+    font-size: 2.5vw;
+    padding:20px 20px
+  }
+ .footer{
+    height:30px;
+ }
+}
+.vcenter {
+display: inline-block;
+vertical-align: middle;
+float: none;
+}
+
+.col-sm-0 {
+    width: 0px;
+    float: left;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    min-height: 1px;
+}
+
+.col-sm-3, .col-sm-6, .col-sm-2{
+  -webkit-transition: all ease .3s;
+    -moz-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    transition: all ease .3s;
+}
+
