@@ -48,6 +48,12 @@ padding-bottom: 40px;
 color: black;
 }
 
+#group_pic,
+.text-right,
+.text-left{
+	padding-bottom: 30px;
+}
+
 .button {
 height: 40px;
 width: 130px;
