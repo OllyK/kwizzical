@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  lang="en-GB" xml:lang="en-GB"
+  data-ng-app="testApp">
+
+  <head>
+    <link href="style.css"
+    rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8"/>
+    <title>Angular Experiment</title>
+
+    <!--load angular/angular route-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="angularexp.js"></script>
+  </head>
+  <body data-ng-controller="mainController">
+
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <h1>Content:</h1>
+
+    <!--content injected here-->
+    <div data-ng-view="data-ng-view"></div>
+
+  </body>
+</html>
