@@ -4,8 +4,10 @@
   data-ng-app="testApp">
 
   <head>
-    <link href="style.css"
-    rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/journal/bootstrap.min.css"/>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
     <meta charset="UTF-8"/>
     <title>Angular Experiment</title>
 
@@ -15,16 +17,20 @@
     <script src="angularexp.js"></script>
   </head>
   <body data-ng-controller="mainController">
+    <span header="header"></span>
+    <div class="container">
+            <h1 class="text-center front_page_title">
+                Content:
+            </h1>
+        </div>
 
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <h1>Content:</h1>
 
     <!--content injected here-->
+    <span footer="footer"></span>
     <div data-ng-view="data-ng-view"></div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script> <!-- Latest compiled and minified JavaScript -->
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+</script>
   </body>
 </html>

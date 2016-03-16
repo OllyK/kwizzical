@@ -23,6 +23,40 @@ testApp.config(function($routeProvider) {
         });
 });
 
+
+
+// angular.module('docsTemplateUrlDirective', [])
+// .controller('Controller', ['$scope', function($scope) {
+//   $scope.customer = {
+//     name: 'Naomi',
+//     address: '1600 Amphitheatre'
+//   };
+// }])
+// .directive('myCustomer', function() {
+//   return {
+//     templateUrl: 'my-customer.html'
+//   };
+// });
+
+testApp.directive("header", function() {
+  return {
+    templateUrl: 'pages/header.html',
+    scope: true,
+    transclude : false,
+    controller: 'MainController'
+  };
+});
+
+testApp.directive("footer", function() {
+  return {
+    templateUrl: 'pages/footer.html',
+    scope: true,
+    transclude : false,
+    controller: 'MainController'
+  };
+});
+
+
 // create the controller and inject Angular's $scope
 testApp.controller('mainController', function($scope) {
     // create a message to display in our view
