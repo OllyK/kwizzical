@@ -24,20 +24,6 @@ testApp.config(function($routeProvider) {
 });
 
 
-
-// angular.module('docsTemplateUrlDirective', [])
-// .controller('Controller', ['$scope', function($scope) {
-//   $scope.customer = {
-//     name: 'Naomi',
-//     address: '1600 Amphitheatre'
-//   };
-// }])
-// .directive('myCustomer', function() {
-//   return {
-//     templateUrl: 'my-customer.html'
-//   };
-// });
-
 testApp.directive("header", function() {
   return {
     templateUrl: 'pages/header.html',
