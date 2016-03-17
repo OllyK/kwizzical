@@ -23,6 +23,26 @@ testApp.config(function($routeProvider) {
         });
 });
 
+
+testApp.directive("header", function() {
+  return {
+    templateUrl: 'pages/header.html',
+    scope: true,
+    transclude : false,
+    controller: 'MainController'
+  };
+});
+
+testApp.directive("footer", function() {
+  return {
+    templateUrl: 'pages/footer.html',
+    scope: true,
+    transclude : false,
+    controller: 'MainController'
+  };
+});
+
+
 // create the controller and inject Angular's $scope
 testApp.controller('mainController', function($scope) {
     // create a message to display in our view
