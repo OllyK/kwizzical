@@ -42,6 +42,7 @@ function quiz() {
 
 function runQuiz($scope, $http) {
   var i = 0;
+  var score = 0;
   $http.get('/quizzes/testquiz.json')
   .success(init)
   .error(JSONError);
@@ -57,17 +58,26 @@ function runQuiz($scope, $http) {
   }
 
   $scope.next = function(choice, index) {
-//    checkAnswer($scope.quiz.answer, choice.choice);
-    console.log("You chose: " + choice.choice);
-    console.log("Answer: " + $scope.answer);
+    checkAnswer(choice.choice);
     update($scope.quizdata.quiz, ++i);
   }
 
   function update(info, i) {
-    if(i >= $scope.quizlength) { $scope.finish = "End of quiz!"; }
+    if(i >= $scope.quizlength) { endQuiz($scope); }
+    $scope.qnum = i + 1;
     $scope.question = info[i].question;
     $scope.choices = info[i].choices;
     $scope.answer = $scope.choices[info[i].answer].choice;
+  }
+
+  function endQuiz($scope) {
+    $scope.finish = "End of quiz!";
+    $scope.score = ("Score: " + score);
+  }
+
+  function checkAnswer(choice) {
+    if(choice == $scope.answer) { score++; }
+    console.log(score);
   }
 }
 

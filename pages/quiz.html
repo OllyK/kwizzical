@@ -2,11 +2,12 @@
   <!-- better to use n-bind than {{ }}
   http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
   <h1 data-ng-bind="quizname"></h1>
-  <p data-ng-bind="question"></p>
+  <p>Question <span data-ng-bind="qnum"></span>: <span data-ng-bind="question"></span></p>
   <ul>
     <li data-ng-repeat="c in choices">
       <a href="" data-ng-bind="c.choice" data-ng-click="next(c, $index)"></a>
     </li>
   </ul>
   <p data-ng-bind="finish"></p>
+  <p><span data-ng-bind="score"></span></p>
 </div>
