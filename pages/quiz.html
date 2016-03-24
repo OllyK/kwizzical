@@ -1,11 +1,12 @@
 <div class="container" id="quiz">
   <!-- better to use n-bind than {{ }}
   http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
-  <h1 data-ng-bind="message"></h1>
+  <h1 data-ng-bind="quizname"></h1>
   <p data-ng-bind="question"></p>
   <ul>
-    <li ng-click="choice" ng-repeat="c in choices">
-      <a href="" ng-click="choose(c)">{{ c.choice }}</a>
+    <li data-ng-repeat="c in choices">
+      <a href="" data-ng-bind="c.choice" data-ng-click="next(c, $index)"></a>
     </li>
   </ul>
+  <p data-ng-bind="finish"></p>
 </div>

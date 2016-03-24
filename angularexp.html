@@ -10,21 +10,20 @@
     <meta charset="UTF-8"/>
     <title>Angular Experiment</title>
 
-    <!--load angular/angular route-->
+    <!--load angular - better to do this in the head -
+    calls to angular.module can only be compiled after the library has been loaded-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </head>
 
   <!--app is contained within body - no routing, keeping it simple for now-->
   <body data-ng-app="testApp">
     <span header="header"></span>
-    <div class="container" quiz="quiz"></div>
+    <div class="container" data-quiz="quiz"></div>
     <span footer="footer"></span>
   </body>
 
-  <!--load angular/angular route-->
-  <script src="angularexp.js"></script>
+  <!--load quiz script-->
+  <script src="js/angularexp.js"></script>
 </html>

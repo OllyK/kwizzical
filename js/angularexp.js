@@ -1,7 +1,5 @@
 "use strict";
 
-/*place call to load angular in <head> - calls to angular.module can
-only be compiled after the library has been loaded*/
 /*advantage of angular - no global variables - functions are local to module*/
 
 var testApp = angular.module('testApp', []);
@@ -43,21 +41,33 @@ function quiz() {
 }
 
 function runQuiz($scope, $http) {
+  var i = 0;
   $http.get('/quizzes/testquiz.json')
-  .success(initQuiz)
+  .success(init)
   .error(JSONError);
 
-  $scope.choose = function(c) {
-    console.log(c.choice);
+//I noticed that this function is being called multiple times (3) -
+//apparently Angular is entering a $digest loop - probably not a problem but something to keep an eye on
+//http://stackoverflow.com/questions/15951984/angularjs-ng-class-method-is-getting-invoked-multiple-times
+  function init(data) {
+    $scope.quizdata = angular.fromJson(data);
+    $scope.quizname = $scope.quizdata.title;
+    $scope.quizlength = $scope.quizdata.quiz.length;
+    update($scope.quizdata.quiz, i);
   }
 
-  processChoices($scope);
+  $scope.next = function(choice, index) {
+//    checkAnswer($scope.quiz.answer, choice.choice);
+    console.log("You chose: " + choice.choice);
+    console.log("Answer: " + $scope.answer);
+    update($scope.quizdata.quiz, ++i);
+  }
 
-  function initQuiz(data) {
-    $scope.info = angular.fromJson(data);
-    checkJSON($scope.info.quiz);
-    $scope.message = $scope.info.title;
-    $scope.question = $scope.info.quiz[0].question;
+  function update(info, i) {
+    if(i >= $scope.quizlength) { $scope.finish = "End of quiz!"; }
+    $scope.question = info[i].question;
+    $scope.choices = info[i].choices;
+    $scope.answer = $scope.choices[info[i].answer].choice;
   }
 }
 
@@ -69,9 +79,8 @@ function checkJSON(data) {
       console.log("Error");
     }
   }
+  //put other checks in
 }
-
-function processChoices($scope) {}
 
 function JSONError() {
   console.log("Error: Could not retrieve JSON object");
