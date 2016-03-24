@@ -1,38 +1,79 @@
-var testApp = angular.module('testApp', ['ngRoute']);
+"use strict";
 
-// configure our routes
-testApp.config(function($routeProvider) {
-    $routeProvider
+/*place call to load angular in <head> - calls to angular.module can
+only be compiled after the library has been loaded*/
+/*advantage of angular - no global variables - functions are local to module*/
 
-        // route for the home page
-        .when('/', {
-            templateUrl : 'pages/home.html',
-            controller  : 'mainController'
-        })
+var testApp = angular.module('testApp', []);
 
-        // route for the about page
-        .when('/about', {
-            templateUrl : 'pages/about.html',
-            controller  : 'aboutController'
-        })
+testApp.directive("header", header);
 
-        // route for the contact page
-        .when('/contact', {
-            templateUrl : 'pages/contact.html',
-            controller  : 'contactController'
-        });
-});
+testApp.directive("footer", footer);
+
+testApp.directive("quiz", quiz);
 
 // create the controller and inject Angular's $scope
-testApp.controller('mainController', function($scope) {
-    // create a message to display in our view
-    $scope.message = 'Welcome to the home page! We have fun and games.';
-});
+testApp.controller('quizController', runQuiz);
 
-testApp.controller('aboutController', function($scope) {
-    $scope.message = 'About us: we are cool. We like cats.';
-});
+function header() {
+  return {
+    templateUrl: 'pages/header.html',
+    scope: true,
+    transclude : false,
+    controller: 'quizController'
+  };
+}
 
-testApp.controller('contactController', function($scope) {
-    $scope.message = 'Contact us: Our preferred method of contact is carrier pigeon. If you do not have access to a carrier pigeon, an email will suffice.';
-});
+function footer() {
+  return {
+    templateUrl: 'pages/footer.html',
+    scope: true,
+    transclude : false,
+    controller: 'quizController'
+  };
+}
+
+function quiz() {
+  return {
+    templateUrl: 'pages/quiz.html',
+    scope: true,
+    transclude : false,
+    controller: 'quizController'
+  };
+}
+
+function runQuiz($scope, $http) {
+  $http.get('/quizzes/testquiz.json')
+  .success(initQuiz)
+  .error(JSONError);
+
+  $scope.choose = function(c) {
+    console.log(c.choice);
+  }
+
+  processChoices($scope);
+
+  function initQuiz(data) {
+    $scope.info = angular.fromJson(data);
+    checkJSON($scope.info.quiz);
+    $scope.message = $scope.info.title;
+    $scope.question = $scope.info.quiz[0].question;
+  }
+}
+
+//check JSON data is in the correct format(4 choices per question etc.)
+function checkJSON(data) {
+  //check all questions have 4 choices
+  for(var i = 0; i < data.length; i++) {
+    console.log(data[i].choices.length);
+    if(data[i].choices.length != 4) {
+      console.log("Error");
+    }
+  }
+}
+
+function processChoices($scope) {}
+
+function JSONError() {
+  console.log("Error: Could not retrieve JSON object");
+}

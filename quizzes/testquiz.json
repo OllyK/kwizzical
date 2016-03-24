@@ -1,0 +1,33 @@
+{"title":"Cat Quiz",
+"quiz":[
+  {
+  "question":"What is the best cat?",
+  "choices":[
+    {"choice":"Scottish Fold"},
+    {"choice":"Tabby"},
+    {"choice":"Bengal"},
+    {"choice":"American Shorthair"}
+  ],
+  "answer":0 },
+
+  {
+  "question":"What is the best dog?",
+  "choices":[
+    {"choice":"Labrador"},
+    {"choice":"Beagle"},
+    {"choice":"Siberian Husky"},
+    {"choice":"Cavalier King Charles Spaniel"}
+  ],
+  "answer":2 },
+
+  {
+  "question":"What is the best bird?",
+  "choices":[
+    {"choice":"Acorn Woodpecker"},
+    {"choice":"African Fish Eagle"},
+    {"choice":"American Oystercatcher"},
+    {"choice":"Wandering Albatross"}
+  ],
+  "answer":0}
+]
+}

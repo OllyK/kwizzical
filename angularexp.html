@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-  lang="en-GB" xml:lang="en-GB"
-  data-ng-app="testApp">
+  lang="en-GB" xml:lang="en-GB">
 
   <head>
-    <link href="style.css"
-    rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/journal/bootstrap.min.css"/>
+      <link href="style.css" rel="stylesheet" type="text/css" />
+      <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
     <meta charset="UTF-8"/>
     <title>Angular Experiment</title>
 
     <!--load angular/angular route-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="angularexp.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </head>
-  <body data-ng-controller="mainController">
 
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <h1>Content:</h1>
-
-    <!--content injected here-->
-    <div data-ng-view="data-ng-view"></div>
-
+  <!--app is contained within body - no routing, keeping it simple for now-->
+  <body data-ng-app="testApp">
+    <span header="header"></span>
+    <div class="container" quiz="quiz"></div>
+    <span footer="footer"></span>
   </body>
+
+  <!--load angular/angular route-->
+  <script src="angularexp.js"></script>
 </html>
