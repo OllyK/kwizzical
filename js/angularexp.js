@@ -63,7 +63,7 @@ function runQuiz($scope, $http) {
   }
 
   function update(info, i) {
-    if(i >= $scope.quizlength) { endQuiz($scope); }
+    if(i >= $scope.quizlength) { endQuiz($scope); return; }
     $scope.qnum = i + 1;
     $scope.question = info[i].question;
     $scope.choices = info[i].choices;
