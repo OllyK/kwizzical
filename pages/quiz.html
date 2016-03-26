@@ -9,9 +9,12 @@
   </p>
   <ul>
     <li data-ng-repeat="c in choices">
-      <a href="" data-ng-bind="c.choice" data-ng-click="next(c, $index)"></a>
+      <a href="" data-ng-bind="c.choice" data-ng-click="checkAnswer(c.choice)"></a>
     </li>
   </ul>
-  <p data-ng-bind="finish"></p>
-  <p><span data-ng-bind="score"></span></p>
+  <p data-ng-show="currentscore">Current score: <span data-ng-bind="score"></span></p>
+  <p data-ng-show="finish">End of quiz!</p>
+  <p data-ng-show="finish">Final score: <span data-ng-bind="score"></span></p>
+  <button data-ng-show="nextbutton" data-ng-init="false" data-ng-click="next()">Next</button>
+  <button data-ng-show="restartbutton" data-ng-init="false" data-ng-click="restart()">Restart</button>
 </div>

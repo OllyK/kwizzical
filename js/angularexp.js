@@ -2,16 +2,14 @@
 
 /*advantage of angular - no global variables - functions are local to module*/
 
-var testApp = angular.module('testApp', []);
+var quizApp = angular
+  .module('quizApp', [])
+  .controller('quizController', runQuiz);
 
-testApp.directive("header", header);
-
-testApp.directive("footer", footer);
-
-testApp.directive("quiz", quiz);
-
-// create the controller and inject Angular's $scope
-testApp.controller('quizController', runQuiz);
+quizApp
+  .directive("header", header)
+  .directive("footer", footer)
+  .directive("quiz", quiz);
 
 function header() {
   return {
@@ -40,58 +38,95 @@ function quiz() {
   };
 }
 
-function runQuiz($scope, $http) {
-  var i = 0;
-  var score = 0;
-  $http.get('/quizzes/testquiz.json')
-  .success(init)
-  .error(JSONError);
+function runQuiz($scope, $http, $log) {
+  var i, score, quizdata, choices, answer;
 
-//I noticed that this function is being called multiple times (3) -
-//apparently Angular is entering a $digest loop - probably not a problem but something to keep an eye on
-//http://stackoverflow.com/questions/15951984/angularjs-ng-class-method-is-getting-invoked-multiple-times
-  function init(data) {
-    $scope.quizdata = angular.fromJson(data);
-    $scope.quizname = $scope.quizdata.title;
-    $scope.quizlength = $scope.quizdata.quiz.length;
-    update($scope.quizdata.quiz, i);
+  //fetch the data and run initQuiz to start the quiz
+  $http({
+    method:'GET',
+    url:'/quizzes/testquiz.json'
+  }).then(initQuiz, error);
+
+  //I noticed that this function is being called multiple times (3) -
+  //apparently Angular is entering a $digest loop - probably not a problem but something to keep an eye on
+  //http://stackoverflow.com/questions/15951984/angularjs-ng-class-method-is-getting-invoked-multiple-times
+  //checks data validity, initialises score, question number, quiz title, calls update
+  function initQuiz(response) {
+    quizdata = response.data;
+    checkJSON(quizdata.questions);
+    $scope.quizname = quizdata.title;
+    $scope.quizlength = quizdata.questions.length;
+    i = 0;
+    score = 0;
+    update($scope);
   }
 
-  $scope.next = function(choice, index) {
-    checkAnswer(choice.choice);
-    update($scope.quizdata.quiz, ++i);
+  function error(reason) {
+    console.log(reason);
   }
 
-  function update(info, i) {
-    if(i >= $scope.quizlength) { endQuiz($scope); return; }
+  //displays question, choices, current score, sets correct answer for checking later
+  function update($scope) {
     $scope.qnum = i + 1;
-    $scope.question = info[i].question;
-    $scope.choices = info[i].choices;
-    $scope.answer = $scope.choices[info[i].answer].choice;
+    $scope.question = quizdata.questions[i].question;
+    $scope.choices = quizdata.questions[i].choices;
+    answer = $scope.choices[quizdata.questions[i].answer].choice;
+    $scope.score = score;
+    $scope.currentscore = true;
   }
 
+  //displays end of quiz message, score
   function endQuiz($scope) {
-    $scope.finish = "End of quiz!";
-    $scope.score = ("Score: " + score);
+    $scope.finish = true;
+    $scope.nextbutton = false;
+    $scope.restartbutton = true;
+    $scope.score = score;
+    $scope.currentscore = false;
+    $scope.showfinalscore = true;
   }
 
-  function checkAnswer(choice) {
-    if(choice == $scope.answer) { score++; }
-    console.log(score);
+  //checks answer and updates score, ends quiz if last question is reached
+  $scope.checkAnswer = function(choice) {
+    if($scope.nextbutton) {}
+    else {
+      if(i >= $scope.quizlength - 1) { endQuiz($scope); }
+      else {
+        if(choice == answer) { score++; }
+        $scope.score = score;
+        $scope.nextbutton = true;
+      }
+    }
+  }
+
+  //increments question number, hides Next button, calls update
+  $scope.next = function() {
+    i++;
+    $scope.nextbutton = false;
+    update($scope);
+  }
+
+  //hides buttons, end of quiz message, resets q. number and score, updates
+  $scope.restart = function() {
+    $scope.nextbutton = false;
+    $scope.restartbutton = false;
+    $scope.finish = false;
+    $scope.currentscore = true;
+    i = 0;
+    score = 0;
+    update($scope);
   }
 }
 
 //check JSON data is in the correct format(4 choices per question etc.)
 function checkJSON(data) {
-  //check all questions have 4 choices
   for(var i = 0; i < data.length; i++) {
     if(data[i].choices.length != 4) {
-      console.log("Error");
+      console.log("Error: question " +  i + " has incorrect number of choices.");
     }
   }
   //put other checks in
 }
 
-function JSONError() {
+var JSONError = function() {
   console.log("Error: Could not retrieve JSON object");
 }
