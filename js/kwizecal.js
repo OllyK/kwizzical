@@ -5,9 +5,7 @@
 var kwizecalApp = angular
   .module('kwizecalApp', ['ngRoute'])
   .controller('mainController', runQuiz)
-  .config(routing);
-
-kwizecalApp
+  .config(routing)
   .directive("header", header)
   .directive("footer", footer)
   .directive("quiz", quiz);
