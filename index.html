@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB" data-ng-app="pageApp">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB" data-ng-app="kwizecalApp">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8"/>
@@ -12,38 +12,19 @@
     <!--load angular - better to do this in the head -
     calls to angular.module can only be compiled after the library has been loaded-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
   </head>
-  
-  <body>
 
+  <body data-ng-controller="mainController">
     <span data-header="header"></span>
-
-    <div class="container">
-      <h1 class="text-center front_page_title">
-          Welcome to Q'wizi coll - the best website on the Internets
-      </h1>
-    </div>
-    <div class="container">
-      <img id="group_pic" class="img-responsive img-rounded center-block" src="img/wg-logo.jpg" alt="Web Gangsters logo"/>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6 text-right">
-          <a href="#" class="btn btn-primary" id="tp_left_button">Take A Quiz!</a>
-        </div>
-        <div class="col-xs-6 text-left">
-          <a href="#" class="btn btn-success" id="tp_right_button">Make A Quiz</a>
-        </div>
-      </div>
-    </div>
-
+    <div data-ng-view="data-ng-view"></div>
     <span data-footer="footer"></span>
 
     <!--load bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!--load page script-->
-    <script src="js/page.js"></script>
+    <script src="js/kwizecal.js"></script>
   </body>
 
 </html>

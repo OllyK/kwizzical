@@ -2,21 +2,28 @@
 
 /*advantage of angular - no global variables - functions are local to module*/
 
-var quizApp = angular
-  .module('quizApp', [])
-  .controller('quizController', runQuiz);
+var kwizecalApp = angular
+  .module('kwizecalApp', ['ngRoute'])
+  .controller('mainController', runQuiz)
+  .config(routing);
 
-quizApp
+kwizecalApp
   .directive("header", header)
   .directive("footer", footer)
   .directive("quiz", quiz);
+
+function routing($routeProvider) {
+  $routeProvider
+    .when('/', { templateUrl : 'pages/home.html' })
+    .when('/takequiz', { templateUrl : 'pages/quiz.html' });
+}
 
 function header() {
   return {
     templateUrl: 'pages/header.html',
     scope: true,
     transclude : false,
-    controller: 'quizController'
+    controller: 'mainController'
   };
 }
 
@@ -25,7 +32,7 @@ function footer() {
     templateUrl: 'pages/footer.html',
     scope: true,
     transclude : false,
-    controller: 'quizController'
+    controller: 'mainController'
   };
 }
 
@@ -34,7 +41,7 @@ function quiz() {
     templateUrl: 'pages/quiz.html',
     scope: true,
     transclude : false,
-    controller: 'quizController'
+    controller: 'mainController'
   };
 }
 
