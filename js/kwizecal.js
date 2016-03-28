@@ -1,7 +1,6 @@
 "use strict";
 
 /*advantage of angular - no global variables - functions are local to module*/
-
 var kwizecalApp = angular
   .module('kwizecalApp', ['ngRoute'])
   .controller('mainController', runQuiz)
