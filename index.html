@@ -1,48 +1,29 @@
-
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-  lang="en-GB" xml:lang="en-GB"
-  data-ng-app="pageApp">
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB" data-ng-app="kwizecalApp">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/journal/bootstrap.min.css"/>
-      <link href="style.css" rel="stylesheet" type="text/css" />
-      <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
     <meta charset="UTF-8"/>
-    <title>Kwizzical - Take a Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/journal/bootstrap.min.css"/>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+    <title>Kwizzical - Home</title>
 
     <!--load angular - better to do this in the head -
     calls to angular.module can only be compiled after the library has been loaded-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  </head>
+
+  <body data-ng-controller="mainController">
+    <span data-header="header"></span>
+    <div data-ng-view="data-ng-view"></div>
+    <span data-footer="footer"></span>
+
+    <!--load bootstrap-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <span data-header="header"></span>
-        <div class="container">
-            <h1 class="text-center front_page_title">
-                Welcome to Q'wizi coll - the best website on the Internets
-            </h1>
-        </div>
-        <div class="container">
-            <a href="#"><img id="group_pic" class="img-responsive img-rounded center-block" src="img/wg-logo.jpg" alt="Web Gangsters logo"/></a>
-        </div>
-        <div class="container">
-            <div class="row">
-
-                <div class="col-xs-6 text-right">
-                    <a href="takequiz.html" class="btn btn-primary" id="tp_left_button">Take A Quiz!</a>
-                </div>
-                <div class="col-xs-6 text-left">
-                    <a href="#" class="btn btn-success" id="tp_right_button">Make A Quiz</a>
-                </div>
-
-            </div>
-        </div>
-       <span data-footer="footer"></span>
-       <!--load page script-->
-       <script src="js/page.js"></script>
+    <!--load page script-->
+    <script src="js/kwizecal.js"></script>
   </body>
 
 </html>
