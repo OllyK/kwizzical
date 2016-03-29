@@ -40,7 +40,8 @@ padding: 20px 10px;
 .navbar-brand svg{
 margin-top: none;
 height:50px;
-width:150px;
+width:160px;
+padding: 10px 0px;
 }
 
 .front_page_title{
