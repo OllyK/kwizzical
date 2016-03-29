@@ -1,7 +1,6 @@
 "use strict";
-addEventListener('load', docready);
-  function  docready  () {
-    for (var i = 0; i < 2; i++) {
+angular.element(document).ready(function () {
+      for (var i = 0; i < 2; i++) {
        var path = document.querySelector('#i' + i);
     var length = path.getTotalLength();
 
@@ -17,5 +16,6 @@ addEventListener('load', docready);
     // GO !
 
     path.style.strokeDashoffset = '0';
-    }
+  
   }
+});
