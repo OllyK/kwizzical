@@ -2,17 +2,41 @@
 
 /*advantage of angular - no global variables - functions are local to module*/
 var kwizecalApp = angular
-  .module('kwizecalApp', ['ngRoute'])
-  .controller('mainController', runQuiz)
-  .config(routing)
-  .directive("header", header)
-  .directive("footer", footer)
-  .directive("quiz", quiz);
+.module('kwizecalApp', ['ngRoute'])
+.controller('mainController', runQuiz)
+.controller('MyCtrl', [function() {
+  angular.element(document).ready(function () {
+   for (var i = 0; i < 2; i++) {
+     var path = document.querySelector('#i' + i);
+     var length = path.getTotalLength();
+
+     path.style.transition = path.style.WebkitTransition = path.style.MozTransition = 'none';
+
+     path.style.strokeDasharray = length + ' ' + length;
+     path.style.strokeDashoffset = length ;
+
+     path.getBoundingClientRect();
+
+     path.style.transition = path.style.WebkitTransition = path.style.MozTransition = 'stroke-dashoffset 3s ease-in-out';
+
+    // GO !
+
+    path.style.strokeDashoffset = '0';
+    
+  }
+});
+}])
+.config(routing)
+.directive("header", header)
+.directive("footer", footer)
+.directive("quiz", quiz);
+
+
 
 function routing($routeProvider) {
   $routeProvider
-    .when('/', { templateUrl : 'pages/home.html' })
-    .when('/takequiz', { templateUrl : 'pages/quiz.html' });
+  .when('/', { templateUrl : 'pages/home.html' })
+  .when('/takequiz', { templateUrl : 'pages/quiz.html' });
 }
 
 function header() {
@@ -92,15 +116,15 @@ function runQuiz($scope, $http, $log) {
   //checks answer and updates score, ends quiz if last question is reached
   $scope.checkAnswer = function(choice) {
     if($scope.nextbutton) {}
-    else {
-      if(i >= $scope.quizlength - 1) { endQuiz($scope); }
       else {
-        if(choice == answer) { score++; }
-        $scope.score = score;
-        $scope.nextbutton = true;
+        if(i >= $scope.quizlength - 1) { endQuiz($scope); }
+        else {
+          if(choice == answer) { score++; }
+          $scope.score = score;
+          $scope.nextbutton = true;
+        }
       }
     }
-  }
 
   //increments question number, hides Next button, calls update
   $scope.next = function() {
