@@ -1,3 +1,5 @@
+"use strict";
+
     function fetchXML  (url, callback) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -11,26 +13,25 @@
         xhr.send(null);
     };
 
+    //check if https is being used
+    function isHttps() {
+      return window.location.protocol == "https:";
+    }
+
     //fetch the document
-    fetchXML("http://localhost:1252/img/thinlogopath3.svg",function(newSVGDoc){
-        //import it into the current DOM
-        var n = document.importNode(newSVGDoc.documentElement,true);
-        document.documentElement.appendChild(n);
-    }) 
-
-myobj = document.getElementById('myobj').cloneNode(true);
-
-var init = function() {
-  current_frame = 0;
-  total_frames = 120;
-  path = new Array();
-  length = new Array();
-  for(var i=0; i<2;i++){
-    path[i] = document.getElementById('i'+i);
-    l = path[i].getTotalLength();
-    length[i] = l;
-    path[i].style.strokeDasharray = l + ' ' + l; 
-    path[i].style.strokeDashoffset = l;
-  }
-  handle = 0;
-}
+    if(isHttps()) {
+      console.log("HTTPS");
+      fetchXML("https://localhost:2347/img/thinlogopath3.svg", function(newSVGDoc){
+          //import it into the current DOM
+          var n = document.importNode(newSVGDoc.documentElement,true);
+          document.documentElement.appendChild(n);
+      });
+    }
+    else if(!isHttps()){
+      console.log("HTTP");
+      fetchXML("http://localhost:1252/img/thinlogopath3.svg", function(newSVGDoc){
+          //import it into the current DOM
+          var n = document.importNode(newSVGDoc.documentElement,true);
+          document.getElementById("myobj").appendChild(n);
+      });
+    }

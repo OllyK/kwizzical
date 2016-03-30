@@ -37,10 +37,11 @@ height: 60px;
 padding: 20px 10px;
 }
 
-.navbar-brand img{
+.navbar-brand svg{
 margin-top: none;
-height:30px;
-width:148.5px;
+height:50px;
+width:160px;
+padding-left: 10px;
 }
 
 .front_page_title{
