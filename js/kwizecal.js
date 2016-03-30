@@ -2,15 +2,14 @@
 
 /*advantage of angular - no global variables - functions are local to module*/
 var kwizecalApp = angular
-.module('kwizecalApp', ['ngRoute'])
-.controller('mainController', runQuiz)
-.controller('MyCtrl', runAnimation)
-.config(routing)
-.directive("header", header)
-.directive("footer", footer)
-.directive("quiz", quiz);
-
-
+  .module('kwizecalApp', ['ngRoute'])
+  .controller('mainController', mainCtrl)
+  .controller('quizController', quizCtrl)
+  .controller('animationController', runAnimation)
+  .config(routing)
+  .directive("header", header)
+  .directive("footer", footer)
+  .directive("quiz", quiz);
 
 function routing($routeProvider) {
   $routeProvider
@@ -36,12 +35,16 @@ function footer() {
   };
 }
 
+//Dummy function - doesn't do anything yet
+//Could possibly be used to control firing of SVG animation?
+function mainCtrl() {}
+
 function quiz() {
   return {
     templateUrl: 'pages/quiz.html',
     scope: true,
     transclude : false,
-    controller: 'mainController'
+    controller: 'quizController'
   };
 }
 
@@ -63,12 +66,12 @@ function runAnimation($scope){
     // GO !
 
     path.style.strokeDashoffset = '0';
-    
+
   }
 });
 }
 
-function runQuiz($scope, $http, $log) {
+function quizCtrl($scope, $http, $log) {
   var i, score, quizdata, choices, answer;
 
   //fetch the data and run initQuiz to start the quiz
