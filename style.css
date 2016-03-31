@@ -99,11 +99,21 @@ background-color: #60cd60;
 	text-align: center;
 }
 
-.btn-block{
+.quizButton{
     padding: 15%;
     font-size: 22px;
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+.smallQuizButton{
+    font-size: 22px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.score{
+    color: blue;
 }
 
 .footer {

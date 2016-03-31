@@ -2,21 +2,34 @@
   <!-- better to use n-bind than {{ }}
   http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
   <div class="container">
-  <p data-ng-show="currentscore">Current score: <span data-ng-bind="score"></span></p>
-  <p data-ng-show="finish">End of quiz!</p>
-  <p data-ng-show="finish">Final score: <span data-ng-bind="score"></span></p>
-  <h1 data-ng-bind="quizname"></h1>
-  <p>
+  <div class="row">
+    <div class="col-sm-6">
+    <h1 data-ng-bind="quizname"></h1>
+    </div>
+    <div class="col-sm-6">
+    <h1 data-ng-show="currentscore">Current score: <span class="score" data-ng-bind="score"></span></h1>
+  <h2 data-ng-show="finish">End of quiz! Final score: <span class="score" data-ng-bind="score"></span>/<span data-ng-bind="quizlength"></span></h2>
+    </div>
+    </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>
     Question <span data-ng-bind="qnum"></span>
     of <span data-ng-bind="quizlength"></span>
     :<span data-ng-bind="question"></span>
-  </p>
+  </h2>
+    </div>
+    <div class="col-sm-6">
+     <a href="" class="btn btn-success smallQuizButton" data-ng-show="nextbutton" data-ng-init="false" data-ng-click="next()">Next</a>
+     <a href="" class="btn btn-info smallQuizButton" data-ng-show="restartbutton" data-ng-init="false" data-ng-click="restart()">Restart</a>
+    </div>
+  </div>
     <div class="row">
     <div class="col-sm-6" data-ng-repeat="c in choices">
-        <a href="" class="btn btn-primary btn-block" data-ng-bind="c.choice" data-ng-click="checkAnswer(c.choice)"></a>
+        <a href="" class="btn btn-primary btn-block quizButton" data-ng-bind="c.choice" data-ng-click="checkAnswer(c.choice)"></a>
       </div>
     </div>
   </div>
-  <button data-ng-show="nextbutton" data-ng-init="false" data-ng-click="next()">Next</button>
-  <button data-ng-show="restartbutton" data-ng-init="false" data-ng-click="restart()">Restart</button>
+  
 </div>
