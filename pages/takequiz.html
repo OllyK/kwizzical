@@ -1,5 +1,5 @@
 <div data-ng-controller="quizCtrl" class="container">
-  <!-- better to use n-bind than {{ }}
+  <!-- better to use ng-bind than {{ }}
   http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
   <h1 data-ng-bind="quiz.title"></h1>
   <p>
@@ -12,9 +12,11 @@
       <a href="" data-ng-bind="c.choice" data-ng-click="update($index)"></a>
     </li>
   </ul>
-  <p data-ng-show="running">Current score: <span data-ng-bind="score"></span></p>
   <p data-ng-show="!running">End of quiz!</p>
-  <p data-ng-show="!running">Final score: <span data-ng-bind="score"></span></p>
-  <button data-ng-show="choicemade" data-ng-init="false" data-ng-click="next()">Next</button>
-  <button data-ng-show="!running" data-ng-click="restart()">Restart</button>
+  <span data-ng-bind="msg"></span>
+  <span data-ng-bind="score"></span>
+  <div>
+    <button data-ng-show="choicemade" data-ng-click="next()">Next</button>
+    <button data-ng-show="!running" data-ng-click="restart()">Restart</button>
+  </div>
 </div>

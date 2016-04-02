@@ -82,6 +82,7 @@ function quizCtrl($scope, $http) {
 
   $scope.i = 0;
   $scope.score = 0;
+  $scope.msg = ("Current score: ");
   $scope.running = true;
   $scope.choicemade = false;
 
@@ -97,7 +98,10 @@ function quizCtrl($scope, $http) {
   //checks answer and updates score, ends quiz if last question is reached
   $scope.update = function(choice) {
     if(!$scope.choicemade) {
-      if($scope.i >= $scope.quiz.questions.length - 1) { $scope.running = false; }
+      if($scope.i >= $scope.quiz.questions.length - 1) {
+        $scope.running = false;
+        $scope.msg = "Final score: ";
+      }
       else {
         if(choice == $scope.quiz.questions[$scope.i].answer) { $scope.score++; }
         $scope.choicemade = true;
@@ -114,6 +118,7 @@ function quizCtrl($scope, $http) {
   $scope.restart = function() {
     $scope.i = 0;
     $scope.score = 0;
+    $scope.msg = "Current score: ";
     $scope.running = true;
   }
 }
