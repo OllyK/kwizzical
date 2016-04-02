@@ -1,0 +1,18 @@
+<div data-ng-controller="quizController" class="container" id="quiz">
+  <h1 data-ng-bind="quizname"></h1>
+  <p>
+    Question <span data-ng-bind="qnum"></span>
+    of <span data-ng-bind="quizlength"></span>
+    :<span data-ng-bind="question"></span>
+  </p>
+  <ul>
+    <li data-ng-repeat="c in choices">
+      <a href="" data-ng-bind="c.choice" data-ng-click="checkAnswer(c.choice)"></a>
+    </li>
+  </ul>
+  <p data-ng-show="currentscore">Current score: <span data-ng-bind="score"></span></p>
+  <p data-ng-show="finish">End of quiz!</p>
+  <p data-ng-show="finish">Final score: <span data-ng-bind="score"></span></p>
+  <button data-ng-show="nextbutton" data-ng-init="false" data-ng-click="next()">Next</button>
+  <button data-ng-show="restartbutton" data-ng-init="false" data-ng-click="restart()">Restart</button>
+</div>

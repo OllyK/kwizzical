@@ -13,8 +13,18 @@ var kwizecalApp = angular
 
 function routing($routeProvider) {
   $routeProvider
-  .when('/', { templateUrl : 'pages/home.html' })
-  .when('/takequiz', { templateUrl : 'pages/quiz.html' });
+  .when('/', {
+    templateUrl : 'pages/home.html'
+  })
+
+  .when('/takequiz', {
+    templateUrl : 'pages/takequiz.html',
+    link: quizCtrl
+  })
+
+  .when('/makequiz', {
+    templateUrl : 'pages/makequiz.html'
+   });
 }
 
 function header() {
