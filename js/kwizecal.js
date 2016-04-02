@@ -3,9 +3,9 @@
 /*advantage of angular - no global variables - functions are local to module*/
 var kwizecalApp = angular
   .module('kwizecalApp', ['ngRoute'])
-  .controller('mainController', mainCtrl)
-  .controller('quizController', quizCtrl)
-  .controller('animationController', runAnimation)
+  .controller('mainCtrl', mainCtrl)
+  .controller('quizCtrl', quizCtrl)
+  .controller('animationCtrl', animationCtrl)
   .config(routing)
   .directive("header", header)
   .directive("footer", footer)
@@ -32,7 +32,7 @@ function header() {
     templateUrl: 'pages/header.html',
     scope: true,
     transclude : false,
-    controller: 'mainController'
+    controller: 'mainCtrl'
   };
 }
 
@@ -41,7 +41,7 @@ function footer() {
     templateUrl: 'pages/footer.html',
     scope: true,
     transclude : false,
-    controller: 'mainController'
+    controller: 'mainCtrl'
   };
 }
 
@@ -58,7 +58,8 @@ function quiz() {
   };
 }
 
-function runAnimation($scope){
+
+function animationCtrl($scope){
   $scope.$on('$includeContentLoaded',function () {
    for (var i = 0; i < 2; i++) {
      var path = document.querySelector('#i' + i);
