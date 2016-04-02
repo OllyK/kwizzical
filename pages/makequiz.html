@@ -1,18 +1,49 @@
 <div data-ng-controller="quizController" class="container" id="quiz">
-  <h1 data-ng-bind="quizname"></h1>
-  <p>
-    Question <span data-ng-bind="qnum"></span>
-    of <span data-ng-bind="quizlength"></span>
-    :<span data-ng-bind="question"></span>
-  </p>
-  <ul>
-    <li data-ng-repeat="c in choices">
-      <a href="" data-ng-bind="c.choice" data-ng-click="checkAnswer(c.choice)"></a>
-    </li>
-  </ul>
-  <p data-ng-show="currentscore">Current score: <span data-ng-bind="score"></span></p>
-  <p data-ng-show="finish">End of quiz!</p>
-  <p data-ng-show="finish">Final score: <span data-ng-bind="score"></span></p>
-  <button data-ng-show="nextbutton" data-ng-init="false" data-ng-click="next()">Next</button>
-  <button data-ng-show="restartbutton" data-ng-init="false" data-ng-click="restart()">Restart</button>
+  <!-- better to use n-bind than {{ }}
+  http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
+  <h1>Create a quiz</h1>
+  <p>Here you can make your very own Kwiz! How exciting!</p>
+
+  <form>
+    <div>
+      <label for="question">Question:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 1:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 2:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 3:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 4:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <h4>Correct answer:</h4>
+      <span>1</span><input type="radio" name="correct" checked="true" />
+      <span>2</span><input type="radio" name="correct" />
+      <span>3</span><input type="radio" name="correct" />
+      <span>4</span><input type="radio" name="correct" />
+    </div>
+ </form>
+
+  <!-- buttons - duplicate of home.html, can probably be avoided -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 text-right">
+        <a href="" class="btn btn-primary" id="tp_left_button">Add Question</a>
+      </div>
+      <div class="col-xs-6 text-left">
+        <a href="" class="btn btn-success" id="tp_right_button">Done</a>
+      </div>
+    </div>
+  </div>
+
 </div>
