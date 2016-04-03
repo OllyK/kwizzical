@@ -34,10 +34,10 @@
      </div>
      <div class="row">
       <div class="col-sm-6" data-ng-repeat="c in choices">
-        <a href="" class="btn btn-block quizButton"  ng-class="{ 'btn-info': $index == 0, 'btn-warning': $index == 1, 'btn-danger': $index == 2,
+        <a href="" class="btn btn-block quizButton" data-ng-class="{ 'btn-info': $index == 0, 'btn-warning': $index == 1, 'btn-danger': $index == 2,
         'btn-primary': $last, }" data-ng-bind="c.choice" data-ng-click="checkAnswer(c.choice)"></a>
       </div>
     </div>
   </div>
-  
+
 </div>
