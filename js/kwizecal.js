@@ -2,14 +2,14 @@
 
 /*advantage of angular - no global variables - functions are local to module*/
 var kwizecalApp = angular
-  .module('kwizecalApp', ['ngRoute'])
-  .controller('mainController', mainCtrl)
-  .controller('quizController', quizCtrl)
-  .controller('animationController', runAnimation)
-  .config(routing)
-  .directive("header", header)
-  .directive("footer", footer)
-  .directive("quiz", quiz);
+.module('kwizecalApp', ['ngRoute'])
+.controller('mainController', mainCtrl)
+.controller('quizController', quizCtrl)
+.controller('animationController', runAnimation)
+.config(routing)
+.directive("header", header)
+.directive("footer", footer)
+.directive("quiz", quiz);
 
 function routing($routeProvider) {
   $routeProvider
@@ -35,6 +35,7 @@ function footer() {
   };
 }
 
+
 //Dummy function - doesn't do anything yet
 //Could possibly be used to control firing of SVG animation?
 function mainCtrl() {}
@@ -53,22 +54,14 @@ function runAnimation($scope){
    for (var i = 0; i < 2; i++) {
      var path = document.querySelector('#i' + i);
      var length = path.getTotalLength();
-
      path.style.transition = path.style.WebkitTransition = path.style.MozTransition = 'none';
-
      path.style.strokeDasharray = length + ' ' + length;
      path.style.strokeDashoffset = length ;
-
      path.getBoundingClientRect();
-
      path.style.transition = path.style.WebkitTransition = path.style.MozTransition = 'stroke-dashoffset 3s ease-in-out';
-
-    // GO !
-
-    path.style.strokeDashoffset = '0';
-
-  }
-});
+     path.style.strokeDashoffset = '0';
+   }
+ });
 }
 
 function quizCtrl($scope, $http, $log) {

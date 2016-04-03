@@ -4,7 +4,7 @@ min-height: 100%;
 }
 
 body {
-background: #FFFFFE;
+background: #FFFFEE;
 margin-bottom: 60px;
 }
 
@@ -67,6 +67,11 @@ border-radius: 5px;
 border-color: #ffffff;
 }
 
+.btn, .footer{
+    font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+    font-weight:700;
+}
+
 .gridButton {
 height: 150px;
 width: 30%;
@@ -100,20 +105,26 @@ background-color: #60cd60;
 }
 
 .quizButton{
+    width: 100%;
     padding: 15%;
-    font-size: 22px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: black;
+    transition: 0.5s;
 }
+
 
 .smallQuizButton{
     font-size: 22px;
-    border-radius: 8px;
     margin-bottom: 10px;
 }
 
 .score{
     color: blue;
+}
+
+#total{
+    color: red;
 }
 
 .footer {
