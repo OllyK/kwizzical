@@ -1,0 +1,55 @@
+<div data-ng-controller="quizCtrl" class="container">
+  <!-- better to use ng-bind than {{ }}
+  http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1 data-ng-bind="quiz.title"></h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 text-center">
+        <h3>
+          Question <span data-ng-bind="i+1"></span>
+          of <span data-ng-bind="quiz.questions.length"></span>:
+        </h3>
+      </div>
+      <div class="col-sm-6 text-center">
+        <h3 data-ng-show="!running">End of quiz!</h3>
+        <h3 data-ng-bind="msg + score"></h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>
+          <span data-ng-bind="quiz.questions[i].question"></span>
+        </h2>
+      </div>
+      <div class="col-sm-6 text-center">
+        <a href="" class="btn btn-success smallQuizButton"
+        data-ng-show="choicemade"
+        data-ng-bind="btnmsg"
+        data-ng-click="next()"></a>
+        <!--had to leave the other button out because of changes to kwizecal.js-->
+        <!--class="btn btn-info smallQuizButton"-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6" data-ng-repeat="c in quiz.questions[i].choices">
+        <a href=""
+        class="btn btn-block quizButton"
+        data-ng-class="{ 'btn-info': $index == 0,
+                         'btn-warning': $index == 1,
+                         'btn-danger': $index == 2,
+                         'btn-primary': $last}"
+        data-ng-bind="c.choice"
+        data-ng-click="update($index)"></a>
+      </div>
+    </div>
+
+  </div>
+</div>
