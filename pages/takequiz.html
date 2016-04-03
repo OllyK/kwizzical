@@ -45,12 +45,9 @@
         data-ng-class="{ 'btn-info': $index == 0,
                          'btn-warning': $index == 1,
                          'btn-danger': $index == 2,
-                         'btn-primary': $last, }"
+                         'btn-primary': $last}"
         data-ng-bind="c.choice"
         data-ng-click="update($index)"></a>
-        <div>
-          <button data-ng-show="choicemade" ></button>
-        </div>
       </div>
     </div>
 
