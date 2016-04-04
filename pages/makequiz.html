@@ -1,0 +1,49 @@
+<div data-ng-controller="quizController" class="container" id="quiz">
+  <!-- better to use n-bind than {{ }}
+  http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
+  <h1>Create a quiz</h1>
+  <p>Here you can make your very own Kwiz! How exciting!</p>
+
+  <form>
+    <div>
+      <label for="question">Question:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 1:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 2:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 3:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <label for="choice">Choice 4:</label>
+      <input type="text" />
+    </div>
+    <div>
+      <h4>Correct answer:</h4>
+      <span>1</span><input type="radio" name="correct" checked="true" />
+      <span>2</span><input type="radio" name="correct" />
+      <span>3</span><input type="radio" name="correct" />
+      <span>4</span><input type="radio" name="correct" />
+    </div>
+ </form>
+
+  <!-- buttons - duplicate of home.html, can probably be avoided -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 text-right">
+        <a href="" class="btn btn-primary" id="tp_left_button">Add Question</a>
+      </div>
+      <div class="col-xs-6 text-left">
+        <a href="" class="btn btn-success" id="tp_right_button">Done</a>
+      </div>
+    </div>
+  </div>
+
+</div>
