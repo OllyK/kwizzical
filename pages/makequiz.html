@@ -1,4 +1,6 @@
-<div data-ng-controller="quizController" class="container" id="quiz">
+<div data-ng-controller="formCtrl"
+     class="container"
+     id="quiz">
 
   <div class="container">
     <div class="row">
@@ -9,35 +11,45 @@
     </div>
 
     <!--form-->
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <form class="form-horizontal" role="form">
+    <form class="form-horizontal"
+          role="form">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
 
           <!--question-->
           <div class="form-group">
             <label class="control-label text-center"
                    for="question">Question:</label>
             <input type="text"
+                   data-ng-model="qu.question"
                    class="form-control"
-                   placeholder="Enter you're question heres"/>
+                   placeholder="Enter your question here"/>
           </div>
 
           <!--choices-->
           <div class="form-group">
             <label class="control-label text-center" for="choice">Choice 1:</label>
-            <input type="text" class="form-control" />
+            <input type="text"
+                   data-ng-model="qu.choices[0]"
+                   class="form-control" />
           </div>
           <div class="form-group">
             <label class="control-label text-center" for="choice">Choice 2:</label>
-            <input type="text" class="form-control" />
+            <input type="text"
+                   data-ng-model="qu.choices[1]"
+                   class="form-control" />
           </div>
           <div class="form-group">
             <label class="control-label text-center" for="choice">Choice 3:</label>
-            <input type="text" class="form-control" />
+            <input type="text"
+                   data-ng-model="qu.choices[2]"
+                   class="form-control" />
           </div>
           <div class="form-group">
             <label class="control-label text-center" for="choice">Choice 4:</label>
-            <input type="text" class="form-control" />
+            <input type="text"
+                   data-ng-model="qu.choices[3]"
+                   class="form-control" />
           </div>
 
           <!--radio button-->
@@ -49,21 +61,29 @@
             <span>4</span><input type="radio" name="correct" />
           </div>
 
-       </form>
-      </div>
-    </div>
-
-    <!-- buttons - duplicate of home.html, can probably be avoided -->
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6 text-right">
-          <a href="" class="btn btn-primary" id="tp_left_button">Add Question</a>
-        </div>
-        <div class="col-xs-6 text-left">
-          <a href="" class="btn btn-success" id="tp_right_button">Done</a>
         </div>
       </div>
 
-    </div>
+    <!-- buttons (possible duplication - home.html) -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 text-right">
+            <input class="btn btn-primary"
+                   data-ng-click="addQuestion()"
+                   id="tp_left_button"
+                   value="Add Question"></input>
+          </div>
+          <div class="col-xs-6 text-left">
+            <input type="submit"
+                   class="btn btn-success"
+                   id="tp_right_button"
+                   value="Done"></input>
+          </div>
+        </div>
+
+      </div>
+
+      <pre>quiz = {{quiz | json}}</pre>
+    </form>
   </div>
 </div>

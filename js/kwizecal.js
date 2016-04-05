@@ -6,6 +6,7 @@ var kwizecalApp = angular
   .config(routing)
   .controller('mainCtrl', mainCtrl)
   .controller('quizCtrl', quizCtrl)
+  .controller('formCtrl', formCtrl)
   .controller('animationCtrl', animationCtrl)
   .directive("header", header)
   .directive("footer", footer)
@@ -117,6 +118,15 @@ function quizCtrl($scope, $http) {
 
   //call to init displays start of quiz
   $scope.init();
+}
+
+function formCtrl($scope) {
+  $scope.quiz = [];
+
+  $scope.addQuestion = function() {
+    $scope.quiz.push(temp);
+    $scope.qu = "";  //careful - do we want to reinit to a string? correct data type?
+  }
 }
 
 //check JSON data is in the correct format(4 choices per question etc.)
