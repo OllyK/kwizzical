@@ -121,12 +121,26 @@ function quizCtrl($scope, $http) {
 }
 
 function formCtrl($scope) {
-  $scope.quiz = [];
+  $scope.question = {
+    "question":"",
+    "choices":["", "", "", ""],
+    "answer":0
+  };
 
+  $scope.q = {
+    "question":"",
+    "choices":["", "", "", ""],
+    "answer":0
+  };
+
+  //needs validation before submitting
   $scope.addQuestion = function() {
-    $scope.quiz.push(temp);
-    $scope.qu = "";  //careful - do we want to reinit to a string? correct data type?
+    $scope.question.question = angular.copy($scope.q.question);
+    $scope.question.choices = angular.copy($scope.q.choices);
+    $scope.q.question = "";
+    $scope.q.choices = ["", "", "", ""];
   }
+
 }
 
 //check JSON data is in the correct format(4 choices per question etc.)
