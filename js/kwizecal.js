@@ -137,6 +137,7 @@ function formCtrl($scope) {
   $scope.addQuestion = function() {
     $scope.question.question = angular.copy($scope.q.question);
     $scope.question.choices = angular.copy($scope.q.choices);
+    $scope.question.answer = angular.copy($scope.q.answer);
     $scope.q.question = "";
     $scope.q.choices = ["", "", "", ""];
   }

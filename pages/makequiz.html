@@ -29,19 +29,20 @@
           <!--choices-->
           <div class="form-group" data-ng-repeat="c in q.choices track by $index">
             <label class="control-label text-center"
-                   for="choice">Choice <span data-ng-bind="$index"></span>:</label>
+                   for="choice">Answer <span data-ng-bind="$index + 1"></span>:</label>
             <input type="text"
                    data-ng-model="q.choices[$index]"
-                   class="form-control" />
+                   class="form-control"
+                   placeholder="Enter your answer here" />
           </div>
 
           <!--radio button-->
           <div class="form-group">
             <h4>Correct answer:</h4>
-            <span>1</span><input type="radio" name="correct" checked="true" />
-            <span>2</span><input type="radio" name="correct" />
-            <span>3</span><input type="radio" name="correct" />
-            <span>4</span><input type="radio" name="correct" />
+            <span>1</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="0" checked="true" />
+            <span>2</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="1"/>
+            <span>3</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="2"/>
+            <span>4</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="3"/>
           </div>
 
         </div>
