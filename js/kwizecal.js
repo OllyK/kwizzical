@@ -127,15 +127,19 @@ function formCtrl($scope) {
     "questions":[]
   };
 
+  $scope.question = {
+  };
+
   $scope.q = {
     "question":"",
-    "choices":["", "", "", ""],
+    "choices":[{choice:""}, {choice:""}, {choice:""},{choice:""}],
     "answer":0
   };
 
   //needs validation before submitting
   $scope.addQuestion = function() {
-    $scope.questionList.questions.push($scope.q);
+    $scope.question = angular.copy($scope.q)
+    $scope.questionList.questions.push($scope.question);
   }
 
 }
