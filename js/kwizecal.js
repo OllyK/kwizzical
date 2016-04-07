@@ -47,6 +47,7 @@ function footer() {
 }
 
 
+
 //Dummy function - doesn't do anything yet
 //Could possibly be used to control firing of SVG animation?
 function mainCtrl() {}
@@ -121,10 +122,9 @@ function quizCtrl($scope, $http) {
 }
 
 function formCtrl($scope) {
-  $scope.question = {
-    "question":"",
-    "choices":["", "", "", ""],
-    "answer":0
+  $scope.questionList = {
+    "title":"",
+    "questions":[]
   };
 
   $scope.q = {
@@ -135,11 +135,7 @@ function formCtrl($scope) {
 
   //needs validation before submitting
   $scope.addQuestion = function() {
-    $scope.question.question = angular.copy($scope.q.question);
-    $scope.question.choices = angular.copy($scope.q.choices);
-    $scope.question.answer = angular.copy($scope.q.answer);
-    $scope.q.question = "";
-    $scope.q.choices = ["", "", "", ""];
+    $scope.questionList.questions.push($scope.q);
   }
 
 }

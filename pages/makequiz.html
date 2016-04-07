@@ -16,6 +16,17 @@
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
 
+        <!--Title-->
+          <div class="form-group">
+            <label class="control-label text-center"
+                   for="question">Quiz Title:</label>
+            <input type="text"
+                   data-ng-model="questionList.title"
+                   class="form-control"
+                   placeholder="What would you like to call your quiz?"/>
+          </div>
+
+
           <!--question-->
           <div class="form-group">
             <label class="control-label text-center"
@@ -67,7 +78,7 @@
 
       </div>
 
-      <pre>{{question | json}}</pre>
+      <pre>{{questionList | json}}</pre>
     </form>
   </div>
 </div>
