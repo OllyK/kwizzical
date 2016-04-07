@@ -138,8 +138,13 @@ function formCtrl($scope) {
 
   //needs validation before submitting
   $scope.addQuestion = function() {
-    $scope.question = angular.copy($scope.q)
-    $scope.questionList.questions.push($scope.question);
+    if($scope.questionList.questions.length < 10){
+      $scope.question = angular.copy($scope.q);
+      $scope.questionList.questions.push($scope.question);
+    }
+    else{
+      alert(" Maximum quiz length is " + $scope.questionList.questions.length + " questions");
+    }
   }
 
 }
