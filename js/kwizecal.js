@@ -121,32 +121,37 @@ function quizCtrl($scope, $http) {
   $scope.init();
 }
 
+//controller for quiz form
 function formCtrl($scope) {
-  $scope.questionList = {
+  $scope.formquiz = {
     "title":"",
     "questions":[]
   };
 
-  $scope.question = {
-  };
-
-  $scope.q = {
+  $scope.formquestion = {
     "question":"",
     "choices":[{choice:""}, {choice:""}, {choice:""},{choice:""}],
     "answer":0
   };
 
-  //needs validation before submitting
+  //needs validation(e.g. SQL injections, empty fields) before submitting
   $scope.addQuestion = function() {
-    if($scope.questionList.questions.length < 10){
-      $scope.question = angular.copy($scope.q);
-      $scope.questionList.questions.push($scope.question);
+    if($scope.formquiz.questions.length < 10){
+      $scope.formquiz.questions.push($scope.formquestion);
+      $scope.clearFields();
     }
     else{
-      alert(" Maximum quiz length is " + $scope.questionList.questions.length + " questions");
+      alert(" Maximum quiz length is " + $scope.formquiz.questions.length + " questions");
     }
   }
 
+  $scope.clearFields = function() {
+    $scope.formquestion = {
+      "question":"",
+      "choices":[{choice:""}, {choice:""}, {choice:""},{choice:""}],
+      "answer":0
+    };
+  }
 }
 
 //check JSON data is in the correct format(4 choices per question etc.)

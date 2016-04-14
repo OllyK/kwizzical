@@ -21,7 +21,7 @@
             <label class="control-label text-center"
                    for="question">Quiz Title:</label>
             <input type="text"
-                   data-ng-model="questionList.title"
+                   data-ng-model="formquiz.title"
                    class="form-control"
                    placeholder="What would you like to call your quiz?"/>
           </div>
@@ -32,17 +32,17 @@
             <label class="control-label text-center"
                    for="question">Question:</label>
             <input type="text"
-                   data-ng-model="q.question"
+                   data-ng-model="formquestion.question"
                    class="form-control"
                    placeholder="Enter your question here"/>
           </div>
 
           <!--choices-->
-          <div class="form-group" data-ng-repeat="c in q.choices track by $index">
+          <div class="form-group" data-ng-repeat="c in formquestion.choices track by $index">
             <label class="control-label text-center"
                    for="choice">Answer <span data-ng-bind="$index + 1"></span>:</label>
             <input type="text"
-                   data-ng-model="q.choices[$index].choice"
+                   data-ng-model="formquestion.choices[$index].choice"
                    class="form-control"
                    placeholder="Enter your answer here" />
           </div>
@@ -50,10 +50,10 @@
           <!--radio button-->
           <div class="form-group">
             <h4>Correct answer:</h4>
-            <span>1</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="0" checked="true" />
-            <span>2</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="1"/>
-            <span>3</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="2"/>
-            <span>4</span><input type="radio" name="correct" data-ng-model="q.answer" ng-value="3"/>
+            <span>1</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="0" checked="true" />
+            <span>2</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="1"/>
+            <span>3</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="2"/>
+            <span>4</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="3"/>
           </div>
 
         </div>
@@ -63,7 +63,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-6 text-right">
-            <input class="btn btn-primary"
+            <input type ="button" class="btn btn-primary"
                    data-ng-click="addQuestion()"
                    id="tp_left_button"
                    value="Add Question"></input>
@@ -76,7 +76,7 @@
           </div>
         </div>
       </div>
-      <pre>{{questionList | json}}</pre>
+      <pre>{{formquiz | json}}</pre>
     </form>
 
   </div>
