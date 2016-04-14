@@ -11,18 +11,18 @@
     </div>
 
     <!--form-->
-    <form class="form-horizontal"
-          role="form">
+    <form class="form-horizontal">
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
 
         <!--Title-->
           <div class="form-group">
             <label class="control-label text-center"
-                   for="question">Quiz Title:</label>
+                   for="title">Quiz Title:</label>
             <input type="text"
                    data-ng-model="formquiz.title"
                    class="form-control"
+                   id="title"
                    placeholder="What would you like to call your quiz?"/>
           </div>
 
@@ -34,6 +34,7 @@
             <input type="text"
                    data-ng-model="formquestion.question"
                    class="form-control"
+                   id="question"
                    placeholder="Enter your question here"/>
           </div>
 
@@ -44,16 +45,44 @@
             <input type="text"
                    data-ng-model="formquestion.choices[$index].choice"
                    class="form-control"
+                   id="choice"
                    placeholder="Enter your answer here" />
           </div>
 
           <!--radio button-->
           <div class="form-group">
-            <h4>Correct answer:</h4>
-            <span>1</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="0" checked="true" />
-            <span>2</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="1"/>
-            <span>3</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="2"/>
-            <span>4</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="3"/>
+            <fieldset>
+              <legend>Correct answer:</legend>
+              <label class="control-label text-center" for="answer1">1
+                <input type="radio"
+                       name="correct"
+                       data-ng-model="formquestion.answer"
+                       data-ng-value="0"
+                       id="answer1"
+                       checked="checked"/>
+              </label>
+              <label class="control-label text-center" for="answer2">2
+                <input type="radio"
+                       name="correct"
+                       data-ng-model="formquestion.answer"
+                       data-ng-value="1"
+                       id="answer2"/>
+              </label>
+              <label class="control-label text-center" for="answer3">3
+                <input type="radio"
+                       name="correct"
+                       data-ng-model="formquestion.answer"
+                       data-ng-value="2"
+                       id="answer3"/>
+              </label>
+              <label class="control-label text-center" for="answer4">4
+                <input type="radio"
+                       name="correct"
+                       data-ng-model="formquestion.answer"
+                       data-ng-value="3"
+                       id="answer4"/>
+              </label>
+            </fieldset>
           </div>
 
         </div>
@@ -66,13 +95,13 @@
             <input type ="button" class="btn btn-primary"
                    data-ng-click="addQuestion()"
                    id="tp_left_button"
-                   value="Add Question"></input>
+                   value="Add Question"/>
           </div>
           <div class="col-xs-6 text-left">
             <input type="submit"
                    class="btn btn-success"
                    id="tp_right_button"
-                   value="Done"></input>
+                   value="Done"/>
           </div>
         </div>
       </div>
