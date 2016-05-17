@@ -13,7 +13,7 @@
 // avoid privilege or port number clash problems or to add firewall protection.
 var http = require('http');
 var fs = require('fs');
-var db_setup = require('./db_setup.js').sayhi;
+var sqlite3 = require('sqlite3').verbose();
 var OK = 200, NotFound = 404, BadType = 415, Error = 500;
 var banned = defineBanned();
 var types = defineTypes();
@@ -23,13 +23,34 @@ start(8080);
 // Start the http service.  Accept only requests from localhost, for security.
 // Print out the server address to visit.
 function start(port) {
-    db_setup();
+    if(!fs.existsSync('./mydb.db')) {
+        db_setup();
+    }
     var httpService = http.createServer(handle);
     httpService.listen(port, 'localhost');
     var address = "http://localhost";
     if (port != 80) address = address + ":" + port;
     console.log("Server running at", address);
 }
+
+//reference
+function db_setup() {
+    var db = new sqlite3.Database('mydb.db');
+    var setup = db.serialize(function() {
+        db.run("CREATE TABLE if not exists user_info (info TEXT)");
+        var stmt = db.prepare("INSERT INTO user_info VALUES (?)");
+        for (var i = 0; i < 10; i++) {
+            stmt.run("Ipsum " + i);
+        }
+        stmt.finalize();
+
+        db.each("SELECT rowid AS id, info FROM user_info", function(err, row) {
+            console.log(row.id + ": " + row.info);
+        });
+    });
+    db.close();
+}
+
 
 // Serve a request.  Process and validate the url, then deliver the file.
 function handle(request, response) {
