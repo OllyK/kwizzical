@@ -4,7 +4,7 @@ angular.module('kwizecalApp', [])
   .controller('formCtrl', formCtrl)
 
 //controller for quiz form
-function formCtrl($scope) {
+function formCtrl($scope, $http) {
   $scope.formquiz = {
     "title":"",
     "questions":[]
@@ -34,4 +34,13 @@ function formCtrl($scope) {
       "answer":0
     };
   }
+
+  $scope.formSubmit = function() {
+    console.log("Submitting form.");
+    var data = 5;
+    $http.post("", data).success(function(data, status) {
+      console.log("Form submitted.");
+    })
+  }
+
 }

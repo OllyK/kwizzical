@@ -31,6 +31,9 @@ function start(port) {
 
 // Serve a request.  Process and validate the url, then deliver the file.
 function handle(request, response) {
+    if(request.method == 'POST') {
+      console.log("POST");
+    }
     var url = request.url;
     url = removeQuery(url);
     url = lower(url);
