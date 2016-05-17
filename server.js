@@ -37,15 +37,23 @@ function start(port) {
 function db_setup() {
     var db = new sqlite3.Database('mydb.db');
     var setup = db.serialize(function() {
-        db.run("CREATE TABLE if not exists user_info (info TEXT)");
-        var stmt = db.prepare("INSERT INTO user_info VALUES (?)");
+        db.run("CREATE TABLE if not exists User (id INTEGER PRIMARY KEY, email TEXT UNIQUE NOT NULL)");
+        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, creator REFERENCES User(id) NOT NULL, quiz TEXT NOT NULL)");
+        var stmt = db.prepare("INSERT INTO User(email) VALUES (?)");
         for (var i = 0; i < 10; i++) {
-            stmt.run("Ipsum " + i);
+            stmt.run("email" + i);
+        }
+         
+        for (var i = 0; i < 10; i++) {
+            db.run("INSERT INTO Quiz(creator, quiz) VALUES (?, ?)", i, "quiz" + i);
         }
         stmt.finalize();
 
-        db.each("SELECT rowid AS id, info FROM user_info", function(err, row) {
-            console.log(row.id + ": " + row.info);
+        db.each("SELECT id, email FROM User", function(err, row) {
+            console.log(row.id + " " + row.email);
+        });
+        db.each("SELECT id, creator, quiz FROM Quiz", function(err, row) {
+            console.log(row.id + " " + row.creator + " " + row.quiz);
         });
     });
     db.close();
