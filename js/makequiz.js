@@ -38,7 +38,7 @@ function formCtrl($scope, $http) {
   $scope.formSubmit = function() {
     console.log("Submitting form.");
     var data = 5;
-    $http.post("", data).success(function(data, status) {
+    $http.post("/postquiz", data).success(function(data, status) {
       console.log("Form submitted.");
     })
   }

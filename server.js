@@ -13,6 +13,7 @@
 // avoid privilege or port number clash problems or to add firewall protection.
 var http = require('http');
 var fs = require('fs');
+var db_setup = require('./db_setup.js').sayhi;
 var OK = 200, NotFound = 404, BadType = 415, Error = 500;
 var banned = defineBanned();
 var types = defineTypes();
@@ -22,6 +23,7 @@ start(8080);
 // Start the http service.  Accept only requests from localhost, for security.
 // Print out the server address to visit.
 function start(port) {
+    db_setup();
     var httpService = http.createServer(handle);
     httpService.listen(port, 'localhost');
     var address = "http://localhost";
@@ -31,20 +33,33 @@ function start(port) {
 
 // Serve a request.  Process and validate the url, then deliver the file.
 function handle(request, response) {
-    if(request.method == 'POST') {
-      console.log("POST");
-    }
     var url = request.url;
-    url = removeQuery(url);
-    url = lower(url);
-    url = addIndex(url);
-    if (! valid(url)) return fail(response, NotFound, "Invalid URL");
-    if (! safe(url)) return fail(response, NotFound, "Unsafe URL");
-    if (! open(url)) return fail(response, NotFound, "URL has been banned");
-    var type = findType(url);
-    if (type == null) return fail(response, BadType, "File type unsupported");
-    if (type == "text/html") type = negotiate(request.headers.accept);
-    reply(response, url, type);
+    console.log("URL" + url);
+
+    if(request.method == 'POST') {
+        console.log("POST");
+        if(url == "/postquiz") {
+          console.log("Posting quiz to database...");
+          postquiztodb();
+        }
+    }
+    else {
+      url = removeQuery(url);
+      url = lower(url);
+      url = addIndex(url);
+      if (! valid(url)) return fail(response, NotFound, "Invalid URL");
+      if (! safe(url)) return fail(response, NotFound, "Unsafe URL");
+      if (! open(url)) return fail(response, NotFound, "URL has been banned");
+      var type = findType(url);
+      if (type == null) return fail(response, BadType, "File type unsupported");
+      if (type == "text/html") type = negotiate(request.headers.accept);
+      reply(response, url, type);
+    }
+}
+
+//post quiz to db
+function postquiztodb() {
+
 }
 
 // Remove the query part of a url.

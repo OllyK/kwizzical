@@ -1,6 +1,13 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('mydb.db');
 var check;
+
+exports.sayhi = sayhi;
+
+function sayhi() {
+  console.log("Hello from the other side");
+}
+
 db.serialize(function() {
 
   db.run("CREATE TABLE if not exists user_info (info TEXT)");
