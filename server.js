@@ -64,10 +64,23 @@ function handle(request, response) {
               postquiztodb(body);
               console.log("Replying...");
               reply2(response, url, type);
+              getQuizList();
           });
         }
     }
     else {
+      if (url == '/quizzes') {
+        request.on('data', function(data) {
+            console.log("Fetching quizzes...");
+            var ql = getQuizList();
+        });
+        request.on('end', function() {
+            console.log("Parsing data...");
+            postquiztodb(body);
+            console.log("Replying...");
+            reply2(response, url, type);
+        });
+      }
       url = removeQuery(url);
       url = lower(url);
       url = addIndex(url);
@@ -91,6 +104,21 @@ function postquiztodb(body) {
             console.log(row.id + " " + row.quiz);
         });
     });
+}
+
+function getQuizList() {
+    var database = new sqlite3.Database('mydb.db');
+
+    var getdata = database.serialize(function() {
+      var list = {};
+      var i = 0;
+      database.each("SELECT id, title FROM Quiz", function(err, row) {
+          console.log(row.id + " " + row.title);
+          list[i++].title = row.title;
+      });
+    });
+    console.log(list);
+    return list;
 }
 
 // Remove the query part of a url.
