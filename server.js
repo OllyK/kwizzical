@@ -34,29 +34,18 @@ function start(port) {
 }
 
 //reference
+//function that sets up schema for database
 function db_setup() {
     var db = new sqlite3.Database('mydb.db');
     var setup = db.serialize(function() {
         db.run("CREATE TABLE if not exists User (id INTEGER PRIMARY KEY, email TEXT UNIQUE NOT NULL)");
-        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, creator REFERENCES User(id) NOT NULL, quiz TEXT NOT NULL)");
+        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, creator INTEGER, quiz TEXT NOT NULL, FOREIGN KEY(creator) REFERENCES User(id))");
         var stmt = db.prepare("INSERT INTO User(email) VALUES (?)");
-        for (var i = 0; i < 10; i++) {
-            stmt.run("email" + i);
-        }
-         
-        for (var i = 0; i < 10; i++) {
-            db.run("INSERT INTO Quiz(creator, quiz) VALUES (?, ?)", i, "quiz" + i);
-        }
+        stmt.run("testuser@email.com");
         stmt.finalize();
-
-        db.each("SELECT id, email FROM User", function(err, row) {
-            console.log(row.id + " " + row.email);
-        });
-        db.each("SELECT id, creator, quiz FROM Quiz", function(err, row) {
-            console.log(row.id + " " + row.creator + " " + row.quiz);
-        });
-    });
+        
     db.close();
+    });
 }
 
 
@@ -88,7 +77,20 @@ function handle(request, response) {
 
 //post quiz to db
 function postquiztodb() {
+    var database = new sqlite3.Database('mydb.db');
+    
+      var postData = database.serialize(function() {   
+        for (var i = 0; i < 10; i++) {
+            database.run("INSERT INTO Quiz(creator, quiz) VALUES (?, ?)", 1, "quiz" + i);
+        }
 
+        database.each("SELECT id, email FROM User", function(err, row) {
+            console.log(row.id + " " + row.email);
+        });
+        database.each("SELECT id, creator, quiz FROM Quiz", function(err, row) {
+            console.log(row.id + " " + row.creator + " " + row.quiz);
+        });
+    });
 }
 
 // Remove the query part of a url.
