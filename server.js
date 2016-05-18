@@ -13,6 +13,7 @@
 // avoid privilege or port number clash problems or to add firewall protection.
 var http = require('http');
 var fs = require('fs');
+var qs = require('querystring');
 var sqlite3 = require('sqlite3').verbose();
 var OK = 200, NotFound = 404, BadType = 415, Error = 500;
 var banned = defineBanned();
@@ -49,10 +50,20 @@ function handle(request, response) {
     console.log("URL" + url);
 
     if(request.method == 'POST') {
+        var body = "";
         console.log("POST");
         if(url == "/postquiz") {
           console.log("Posting quiz to database...");
-          postquiztodb();
+          request.on('data', function(data) {
+              console.log("Logging data...");
+              body += data;
+          });
+
+          request.on('end', function() {
+              console.log("Parsing data...");
+              console.log(body);
+              postquiztodb(body);
+          });
         }
     }
     else {
@@ -70,16 +81,12 @@ function handle(request, response) {
 }
 
 //post quiz to db
-function postquiztodb() {
+function postquiztodb(body) {
     var database = new sqlite3.Database('mydb.db');
-    
-      var postData = database.serialize(function() {   
-        for (var i = 0; i < 10; i++) {
-            database.run("INSERT INTO Quiz( quiz) VALUES (?)", "quiz" + i);
-        }
 
-     
-        database.each("SELECT id,  quiz FROM Quiz", function(err, row) {
+      var postData = database.serialize(function() {
+        database.run("INSERT INTO Quiz( quiz) VALUES (?)", body);
+        database.each("SELECT id, quiz FROM Quiz", function(err, row) {
             console.log(row.id + " " + row.quiz);
         });
     });

@@ -37,10 +37,16 @@ function formCtrl($scope, $http) {
 
   $scope.formSubmit = function() {
     console.log("Submitting form.");
-    var data = 5;
-    $http.post("/postquiz", data).success(function(data, status) {
-      console.log("Form submitted.");
-    })
+    var data = $scope.formquiz;
+    console.log("JSON data: \n" + data);
+    
+    $http.post("/postquiz", data)
+      .success(function(data, status) {
+        console.log("Form submitted.");
+      })
+      .error(function(data, status, headers, config) {
+        alert("Failure :" + JSON.stringify({data : data}));
+      });
   }
 
 }
