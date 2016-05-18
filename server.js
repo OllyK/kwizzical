@@ -38,13 +38,7 @@ function start(port) {
 function db_setup() {
     var db = new sqlite3.Database('mydb.db');
     var setup = db.serialize(function() {
-        db.run("CREATE TABLE if not exists User (id INTEGER PRIMARY KEY, email TEXT UNIQUE NOT NULL)");
-        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, creator INTEGER, quiz TEXT NOT NULL, FOREIGN KEY(creator) REFERENCES User(id))");
-        var stmt = db.prepare("INSERT INTO User(email) VALUES (?)");
-        stmt.run("testuser@email.com");
-        stmt.finalize();
-        
-    db.close();
+        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY,  quiz TEXT NOT NULL)");
     });
 }
 
@@ -81,14 +75,12 @@ function postquiztodb() {
     
       var postData = database.serialize(function() {   
         for (var i = 0; i < 10; i++) {
-            database.run("INSERT INTO Quiz(creator, quiz) VALUES (?, ?)", 1, "quiz" + i);
+            database.run("INSERT INTO Quiz( quiz) VALUES (?)", "quiz" + i);
         }
 
-        database.each("SELECT id, email FROM User", function(err, row) {
-            console.log(row.id + " " + row.email);
-        });
-        database.each("SELECT id, creator, quiz FROM Quiz", function(err, row) {
-            console.log(row.id + " " + row.creator + " " + row.quiz);
+     
+        database.each("SELECT id,  quiz FROM Quiz", function(err, row) {
+            console.log(row.id + " " + row.quiz);
         });
     });
 }
