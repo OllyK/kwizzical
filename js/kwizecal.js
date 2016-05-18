@@ -21,7 +21,11 @@ function routing($routeProvider) {
   .when('/makequiz', {
     templateUrl : 'pages/makequiz.html',
     controller : 'formCtrl'
-   });
+   })
+
+   .when('/congrats', {
+     templateUrl : 'pages/congrats.html'
+    });
 }
 
 function header() {

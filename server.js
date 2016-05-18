@@ -15,7 +15,7 @@ var http = require('http');
 var fs = require('fs');
 var qs = require('querystring');
 var sqlite3 = require('sqlite3').verbose();
-var OK = 200, NotFound = 404, BadType = 415, Error = 500;
+var OK = 200, NotFound = 404, BadType = 415, Error = 500, Redirect = 303;
 var banned = defineBanned();
 var types = defineTypes();
 test();
@@ -61,8 +61,9 @@ function handle(request, response) {
 
           request.on('end', function() {
               console.log("Parsing data...");
-              console.log(body);
               postquiztodb(body);
+              console.log("Replying...");
+              reply2(response, url, type);
           });
         }
     }
@@ -170,6 +171,12 @@ function negotiate(accept) {
 function reply(response, url, type) {
     var file = "." + url;
     fs.readFile(file, deliver.bind(null, response, type));
+}
+
+function reply2(response, url, type) {
+    var typeHeader = { 'Content-Type': type };
+    response.writeHead(OK, typeHeader);
+    response.end();
 }
 
 // Deliver the file that has been read in to the browser.
