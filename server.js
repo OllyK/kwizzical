@@ -39,7 +39,7 @@ function start(port) {
 function db_setup() {
     var db = new sqlite3.Database('mydb.db');
     var setup = db.serialize(function() {
-        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY,  quiz TEXT NOT NULL)");
+        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, title TEXT NOT NULL, quiz TEXT NOT NULL)");
     });
 }
 
@@ -51,33 +51,39 @@ function handle(request, response) {
 
     if(request.method == 'POST') {
         var body = "";
-        console.log("POST");
         if(url == "/postquiz") {
-          console.log("Posting quiz to database...");
           request.on('data', function(data) {
-              console.log("Logging data...");
               body += data;
           });
 
           request.on('end', function() {
-              console.log("Parsing data...");
               postquiztodb(body);
-              console.log("Replying...");
-              reply2(response, url, type);
+              redirect(response, url, type);
           });
         }
     }
     else {
-      url = removeQuery(url);
-      url = lower(url);
-      url = addIndex(url);
-      if (! valid(url)) return fail(response, NotFound, "Invalid URL");
-      if (! safe(url)) return fail(response, NotFound, "Unsafe URL");
-      if (! open(url)) return fail(response, NotFound, "URL has been banned");
-      var type = findType(url);
-      if (type == null) return fail(response, BadType, "File type unsupported");
-      if (type == "text/html") type = negotiate(request.headers.accept);
-      reply(response, url, type);
+      if (url == '/quizlist') {
+  //      request.on('data', function(data) {
+    //        console.log("Fetching quizzes...");
+            getQuizList(response);
+      //  });
+      //  request.on('end', function() {
+//            replyJson(response, url, type, content);
+      //  });
+      }
+      else {
+        url = removeQuery(url);
+        url = lower(url);
+        url = addIndex(url);
+        if (! valid(url)) return fail(response, NotFound, "Invalid URL");
+        if (! safe(url)) return fail(response, NotFound, "Unsafe URL");
+        if (! open(url)) return fail(response, NotFound, "URL has been banned");
+        var type = findType(url);
+        if (type == null) return fail(response, BadType, "File type unsupported");
+        if (type == "text/html") type = negotiate(request.headers.accept);
+        reply(response, url, type);
+      }
     }
 }
 
@@ -86,10 +92,18 @@ function postquiztodb(body) {
     var database = new sqlite3.Database('mydb.db');
 
       var postData = database.serialize(function() {
-        database.run("INSERT INTO Quiz( quiz) VALUES (?)", body);
-        database.each("SELECT id, quiz FROM Quiz", function(err, row) {
-            console.log(row.id + " " + row.quiz);
-        });
+        var json = JSON.parse(body);
+        database.run("INSERT INTO Quiz(title, quiz) VALUES (?, ?)", json.title, body);
+    });
+}
+
+function getQuizList(response) {
+
+    var database = new sqlite3.Database('mydb.db');
+    var ql = {quizzes: []};
+
+    var getdata = database.serialize(function() {
+    database.all("SELECT id, title FROM Quiz", replyJson.bind(null, response, 'application/json'));
     });
 }
 
@@ -173,9 +187,17 @@ function reply(response, url, type) {
     fs.readFile(file, deliver.bind(null, response, type));
 }
 
-function reply2(response, url, type) {
+function redirect(response, url, type) {
     var typeHeader = { 'Content-Type': type };
     response.writeHead(OK, typeHeader);
+    response.end();
+}
+
+function replyJson(response, type, err, content) {
+    console.log("replyJson", content);
+    var typeHeader = { 'Content-Type': type };
+    response.writeHead(OK, typeHeader);
+    response.write(JSON.stringify(content));
     response.end();
 }
 

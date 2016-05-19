@@ -18,6 +18,11 @@ function routing($routeProvider) {
     controller : 'quizCtrl'
   })
 
+  .when('/quizzes', {
+    templateUrl : 'pages/quizzes.html',
+    controller : 'qlCtrl'
+  })
+
   .when('/makequiz', {
     templateUrl : 'pages/makequiz.html',
     controller : 'formCtrl'
