@@ -19,7 +19,8 @@ function routing($routeProvider) {
   })
 
   .when('/quizzes', {
-    templateUrl : 'pages/quizzes.html'
+    templateUrl : 'pages/quizzes.html',
+    controller : 'qlCtrl'
   })
 
   .when('/makequiz', {
