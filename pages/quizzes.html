@@ -1,7 +1,9 @@
 <div data-ng-controller="qlCtrl" class="container">
 
       <div class="col-sm-6" data-ng-repeat="quiz in quizlist">
-        <a href=""
+        <a
+        data-ng-href="/#/takequiz"
+        data-ng-click="doStuff(quiz.id)"
         class="btn btn-block quizButton"
         data-ng-bind="quiz.title"></a>
       </div>

@@ -7,6 +7,22 @@ var kwizecalApp = angular
   .directive("header", header)
   .directive("footer", footer)
 
+kwizecalApp.factory('quizService', function() {
+  var quiz = {};
+
+  return {
+      quiz:function() {
+          return quiz;
+      },
+      setQuiz: function(q) {
+          quiz = q;
+      },
+      getQuiz: function() {
+          return quiz;
+      }
+  };
+});
+
 function routing($routeProvider) {
   $routeProvider
   .when('/', {

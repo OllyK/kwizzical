@@ -3,13 +3,10 @@
 angular.module('kwizecalApp', [])
   .controller('quizCtrl', quizCtrl);
 
-function quizCtrl($scope, $http) {
+function quizCtrl($scope, $http, quizService) {
 
-  //fetch JSON data from server
-  $http
-    .get('quizzes/testquiz.json')
-    .success(loadQuiz)
-    .error(showError)
+  //fetch JSON data from service
+  loadQuiz(quizService.getQuiz());
 
   function loadQuiz(data) {
     checkJSON(data);
