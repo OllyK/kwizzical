@@ -38,9 +38,11 @@ function formCtrl($scope, $http, $location) {
   $scope.formSubmit = function() {
     console.log("Submitting form.");
     var data = $scope.formquiz;
+    console.log("JSON data: \n" + data);
 
     $http.post("/postquiz", data)
       .success(function(data, status) {
+        console.log("SuCCESSSS!!!");
         $location.path("/congrats");
       })
       .error(function(data, status, headers, config) {
