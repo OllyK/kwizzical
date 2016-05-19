@@ -19,7 +19,9 @@ var OK = 200, NotFound = 404, BadType = 415, Error = 500, Redirect = 303;
 var banned = defineBanned();
 var types = defineTypes();
 test();
-start(8080);
+getQuizList();
+
+// start(8080);
 
 // Start the http service.  Accept only requests from localhost, for security.
 // Print out the server address to visit.
@@ -39,7 +41,7 @@ function start(port) {
 function db_setup() {
     var db = new sqlite3.Database('mydb.db');
     var setup = db.serialize(function() {
-        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY,  quiz TEXT NOT NULL)");
+        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, title TEXT NOT NULL, quiz TEXT NOT NULL)");
     });
 }
 
@@ -51,20 +53,14 @@ function handle(request, response) {
 
     if(request.method == 'POST') {
         var body = "";
-        console.log("POST");
         if(url == "/postquiz") {
-          console.log("Posting quiz to database...");
           request.on('data', function(data) {
-              console.log("Logging data...");
               body += data;
           });
 
           request.on('end', function() {
-              console.log("Parsing data...");
               postquiztodb(body);
-              console.log("Replying...");
               reply2(response, url, type);
-              getQuizList();
           });
         }
     }
@@ -72,13 +68,10 @@ function handle(request, response) {
       if (url == '/quizzes') {
         request.on('data', function(data) {
             console.log("Fetching quizzes...");
-            var ql = getQuizList();
+            getQuizList();
         });
         request.on('end', function() {
-            console.log("Parsing data...");
-            postquiztodb(body);
-            console.log("Replying...");
-            reply2(response, url, type);
+            reply(response, url, type);
         });
       }
       url = removeQuery(url);
@@ -99,26 +92,23 @@ function postquiztodb(body) {
     var database = new sqlite3.Database('mydb.db');
 
       var postData = database.serialize(function() {
-        database.run("INSERT INTO Quiz( quiz) VALUES (?)", body);
-        database.each("SELECT id, quiz FROM Quiz", function(err, row) {
-            console.log(row.id + " " + row.quiz);
-        });
+        var json = JSON.parse(body);
+        database.run("INSERT INTO Quiz(title, quiz) VALUES (?, ?)", json.title, body);
     });
 }
 
 function getQuizList() {
+
     var database = new sqlite3.Database('mydb.db');
+    var ql = {quizzes: []};
 
     var getdata = database.serialize(function() {
-      var list = {};
-      var i = 0;
-      database.each("SELECT id, title FROM Quiz", function(err, row) {
-          console.log(row.id + " " + row.title);
-          list[i++].title = row.title;
-      });
+    database.all("SELECT id, title FROM Quiz", callback);
     });
-    console.log(list);
-    return list;
+}
+
+function callback(err, rows) {
+  console.log("DATA: " + JSON.stringify(rows));
 }
 
 // Remove the query part of a url.
