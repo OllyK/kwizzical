@@ -64,13 +64,13 @@ function handle(request, response) {
     }
     else {
       if (url == '/quizlist') {
-  //      request.on('data', function(data) {
-    //        console.log("Fetching quizzes...");
-            getQuizList(response);
-      //  });
-      //  request.on('end', function() {
-//            replyJson(response, url, type, content);
-      //  });
+        getQuizList(response);
+      }
+      else if(url.startsWith('/getquiz')) {
+        console.log("getquiz request made...");
+        var splitstr = url.split("/");
+        var id = splitstr[splitstr.length-1];
+        getQuiz(id, response);
       }
       else {
         url = removeQuery(url);
@@ -98,12 +98,16 @@ function postquiztodb(body) {
 }
 
 function getQuizList(response) {
-
     var database = new sqlite3.Database('mydb.db');
-    var ql = {quizzes: []};
-
     var getdata = database.serialize(function() {
-    database.all("SELECT id, title FROM Quiz", replyJson.bind(null, response, 'application/json'));
+      database.all("SELECT id, title FROM Quiz", replyJson.bind(null, response, 'application/json'));
+    });
+}
+
+function getQuiz(id, response) {
+    var database = new sqlite3.Database('mydb.db');
+    var getdata = database.serialize(function() {
+      database.get("SELECT quiz FROM Quiz WHERE id = ?", id, replyJson.bind(null, response, 'application/json'));
     });
 }
 
@@ -193,6 +197,7 @@ function redirect(response, url, type) {
     response.end();
 }
 
+// Deliver a JSON object to the browser
 function replyJson(response, type, err, content) {
     console.log("replyJson", content);
     var typeHeader = { 'Content-Type': type };

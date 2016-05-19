@@ -7,6 +7,7 @@ var kwizecalApp = angular
   .directive("header", header)
   .directive("footer", footer)
 
+// Service that holds quiz data for sharing between controllers
 kwizecalApp.factory('quizService', function() {
   var quiz = {};
 
@@ -15,10 +16,12 @@ kwizecalApp.factory('quizService', function() {
           return quiz;
       },
       setQuiz: function(q) {
+          console.log("Q: " + JSON.stringify(q));
           quiz = q;
       },
       getQuiz: function() {
-          return quiz;
+          // console.log("Returning json: " + JSON.parse(quiz));
+          return JSON.parse(quiz);
       }
   };
 });

@@ -9,7 +9,9 @@ function quizCtrl($scope, $http, quizService) {
   loadQuiz(quizService.getQuiz());
 
   function loadQuiz(data) {
-    checkJSON(data);
+
+    // checkJSON(data);
+    var quiz =
     $scope.quiz = data;
   }
 
