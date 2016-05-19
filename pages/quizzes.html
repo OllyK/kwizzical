@@ -3,6 +3,7 @@
       <div class="col-sm-6" data-ng-repeat="quiz in quizlist">
         <a href=""
         class="btn btn-block quizButton"
+        data-ng-href="/quiz/{{quiz.id}}"
         data-ng-bind="quiz.title"></a>
       </div>
 
