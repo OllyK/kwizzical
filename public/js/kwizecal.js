@@ -27,7 +27,7 @@ kwizecalApp.factory('quizService', function() {
 function routing($routeProvider) {
   $routeProvider
   .when('/', {
-    templateUrl : '../public/pages/home.html'
+    templateUrl : 'public/pages/home.html'
   })
 
   .when('/takequiz', {

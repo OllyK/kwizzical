@@ -1,7 +1,7 @@
 <div data-ng-controller="qlCtrl" class="container">
 
   <div class="col-sm-12 text-center">
-    <h2 class="front_page_title">Select a Kwiz from the list:</h2>
+    <h2 data-ng-bind="msg" class="front_page_title"></h2>
   </div>
 
   <div class="col-sm-6" data-ng-repeat="quiz in quizlist">

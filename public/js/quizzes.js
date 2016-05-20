@@ -6,6 +6,10 @@ angular.module('kwizecalApp', [])
 function qlCtrl($scope, $http, quizService) {
 
   function loadQuizzes(data) {
+    if(data.length == 0) {
+      $scope.msg = "There are no Kwizzes to take at this time. Please make one";
+    }
+    else { $scope.msg = "Select a Kwiz from the list below:"; }
     $scope.quizlist = data;
   }
 
@@ -22,7 +26,7 @@ function qlCtrl($scope, $http, quizService) {
         .success(quizService.setQuiz)
         .error(showError)
   }
-  
+
   //fetch JSON data from server
   $http
     .get('/quizlist')
