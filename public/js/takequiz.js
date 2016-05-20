@@ -3,11 +3,7 @@
 angular.module('kwizecalApp', [])
   .controller('quizCtrl', quizCtrl);
 
-function quizCtrl($scope, $http, quizService) {
-
-  //fetch JSON data from service
-  var quiz = quizService.getQuiz();
-  loadQuiz(quiz);
+function quizCtrl($scope, $http, $routeParams) {
 
   function loadQuiz(data) {
     checkJSON(data);
@@ -50,6 +46,18 @@ function quizCtrl($scope, $http, quizService) {
     }
     else { $scope.init(); }
   }
+
+  // send a request to the server for a quiz
+  var id = $routeParams.id;
+  console.log("ID: " + id);
+  console.log("Client sending request for quiz: " + id);
+  var url = 'getquiz/' + id;
+
+  //fetch JSON data for quiz
+  $http
+   .get(url)
+   .success(loadQuiz)
+   .error(showError)
 
   //call to init displays start of quiz
   $scope.init();

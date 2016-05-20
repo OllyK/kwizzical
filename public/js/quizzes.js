@@ -3,7 +3,7 @@
 angular.module('kwizecalApp', [])
   .controller('qlCtrl', qlCtrl);
 
-function qlCtrl($scope, $http, quizService) {
+function qlCtrl($scope, $http) {
 
   function loadQuizzes(data) {
     if(data.length == 0) {
@@ -15,16 +15,6 @@ function qlCtrl($scope, $http, quizService) {
 
   function showError(reason) {
     console.log(reason);
-  }
-
-  // send a request to the server for a quiz
-  $scope.getQuiz = function(id) {
-      console.log("Client sending request for quiz: " + id);
-      var url = 'getquiz/' + id;
-      $http
-        .get(url)
-        .success(quizService.setQuiz)
-        .error(showError)
   }
 
   //fetch JSON data from server
