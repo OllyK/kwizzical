@@ -13,7 +13,6 @@
 // avoid privilege or port number clash problems or to add firewall protection.
 var http = require('http');
 var fs = require('fs');
-
 var qs = require('querystring');
 var sqlite3 = require('sqlite3').verbose();
 var OK = 200, NotFound = 404, BadType = 415, Error = 500, Redirect = 303;
@@ -25,7 +24,7 @@ start(8080);
 // Start the http service.  Accept only requests from localhost, for security.
 // Print out the server address to visit.
 function start(port) {
-    if(!fs.existsSync('./mydb.db')) {
+    if(!fs.existsSync('./private/mydb.db')) {
         db_setup();
     }
     var httpService = http.createServer(handle);
@@ -38,7 +37,7 @@ function start(port) {
 //reference
 //function that sets up schema for database
 function db_setup() {
-    var db = new sqlite3.Database('mydb.db');
+    var db = new sqlite3.Database('private/mydb.db');
     var setup = db.serialize(function() {
         db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, title TEXT NOT NULL, quiz TEXT NOT NULL)");
     });
@@ -91,7 +90,7 @@ function handle(request, response) {
 
 //post quiz to db
 function postquiztodb(body) {
-    var database = new sqlite3.Database('mydb.db');
+    var database = new sqlite3.Database('private/mydb.db');
     var json = JSON.parse(body);
     var postData = database.serialize(function() {
         database.run("INSERT INTO Quiz(title, quiz) VALUES (?, ?)", json.title, body);
@@ -100,14 +99,14 @@ function postquiztodb(body) {
 
 function getQuizList(response) {
     console.log("Fetching quiz list...");
-    var database = new sqlite3.Database('mydb.db');
+    var database = new sqlite3.Database('private/mydb.db');
     var getdata = database.serialize(function() {
         database.all("SELECT id, title FROM Quiz", replyJson.bind(null, response, 'application/json'));
     });
 }
 
 function getQuiz(id, response) {
-    var database = new sqlite3.Database('mydb.db');
+    var database = new sqlite3.Database('private/mydb.db');
     var getdata = database.serialize(function() {
         database.get("SELECT quiz FROM Quiz WHERE id = ?", id, replyJson2.bind(null, response, 'application/json'));
     });
