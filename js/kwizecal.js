@@ -16,12 +16,10 @@ kwizecalApp.factory('quizService', function() {
           return quiz;
       },
       setQuiz: function(q) {
-          console.log("Q: " + JSON.stringify(q));
           quiz = q;
       },
       getQuiz: function() {
-          // console.log("Returning json: " + JSON.parse(quiz));
-          return JSON.parse(quiz);
+          return quiz;
       }
   };
 });

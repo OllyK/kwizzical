@@ -6,12 +6,11 @@ angular.module('kwizecalApp', [])
 function quizCtrl($scope, $http, quizService) {
 
   //fetch JSON data from service
-  loadQuiz(quizService.getQuiz());
+  var quiz = quizService.getQuiz();
+  loadQuiz(quiz);
 
   function loadQuiz(data) {
-
-    // checkJSON(data);
-    var quiz =
+    checkJSON(data);
     $scope.quiz = data;
   }
 

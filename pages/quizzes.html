@@ -3,7 +3,7 @@
       <div class="col-sm-6" data-ng-repeat="quiz in quizlist">
         <a
         data-ng-href="/#/takequiz"
-        data-ng-click="doStuff(quiz.id)"
+        data-ng-click="getQuiz(quiz.id)"
         class="btn btn-block quizButton"
         data-ng-bind="quiz.title"></a>
       </div>

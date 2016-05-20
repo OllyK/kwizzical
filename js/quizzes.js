@@ -19,7 +19,8 @@ function qlCtrl($scope, $http, quizService) {
     console.log(reason);
   }
 
-  $scope.doStuff = function(id) {
+  $scope.getQuiz = function(id) {
+      console.log("Client sending request for quiz: " + id);
       var url = 'getquiz/' + id;
       $http
         .get(url)
