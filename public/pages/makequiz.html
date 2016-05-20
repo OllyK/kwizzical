@@ -1,0 +1,83 @@
+<div data-ng-controller="formCtrl"
+     class="container"
+     id="quiz">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1>Create a Kwiz</h1>
+        <h2 class="front_page_title col-sm-12 text-center">Here you can make your very own Kwiz! How exciting!</h2>
+      </div>
+    </div>
+
+    <!--form-->
+    <form class="form-horizontal"
+          role="form"
+          data-ng-submit="formSubmit()">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+
+        <!--Title-->
+          <div class="form-group">
+            <label class="control-label text-center"
+                   for="question">Kwiz Title:</label>
+            <input type="text"
+                   data-ng-model="formquiz.title"
+                   class="form-control"
+                   placeholder="What would you like to call your quiz?"/>
+          </div>
+
+
+          <!--question-->
+          <div class="form-group">
+            <label class="control-label text-center"
+                   for="question">Question:</label>
+            <input type="text"
+                   data-ng-model="formquestion.question"
+                   class="form-control"
+                   placeholder="Enter your question here"/>
+          </div>
+
+          <!--choices-->
+          <div class="form-group" data-ng-repeat="c in formquestion.choices track by $index">
+            <label class="control-label text-center"
+                   for="choice">Answer <span data-ng-bind="$index + 1"></span>:</label>
+            <input type="text"
+                   data-ng-model="formquestion.choices[$index].choice"
+                   class="form-control"
+                   placeholder="Enter your answer here" />
+          </div>
+
+          <!--radio button-->
+          <div class="form-group">
+            <h4>Correct answer:</h4>
+            <span>1</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="0" checked="true" />
+            <span>2</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="1"/>
+            <span>3</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="2"/>
+            <span>4</span><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="3"/>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- buttons -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 text-right">
+            <input type ="button" class="btn btn-primary"
+                   data-ng-click="addQuestion()"
+                   id="tp_left_button"
+                   value="Add Question"></input>
+          </div>
+          <div class="col-xs-6 text-left">
+            <input type="submit"
+                   class="btn btn-success"
+                   id="tp_right_button"
+                   value="Done"></input>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

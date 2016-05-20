@@ -27,37 +27,37 @@ kwizecalApp.factory('quizService', function() {
 function routing($routeProvider) {
   $routeProvider
   .when('/', {
-    templateUrl : 'pages/home.html'
+    templateUrl : '../public/pages/home.html'
   })
 
   .when('/takequiz', {
-    templateUrl : 'pages/takequiz.html',
+    templateUrl : 'public/pages/takequiz.html',
     controller : 'quizCtrl'
   })
 
   .when('/quizzes', {
-    templateUrl : 'pages/quizzes.html',
+    templateUrl : 'public/pages/quizzes.html',
     controller : 'qlCtrl'
   })
 
   .when('/makequiz', {
-    templateUrl : 'pages/makequiz.html',
+    templateUrl : 'public/pages/makequiz.html',
     controller : 'formCtrl'
    })
 
    .when('/congrats', {
-     templateUrl : 'pages/congrats.html'
+     templateUrl : 'public/pages/congrats.html'
    })
 
    .when('/about', {
-     templateUrl : 'pages/about.html'
+     templateUrl : 'public/pages/about.html'
     });
 }
 
 // load header.html
 function header() {
   return {
-    templateUrl : 'pages/header.html',
+    templateUrl : 'public/pages/header.html',
     scope: true,
     transclude : false
   };
@@ -66,7 +66,7 @@ function header() {
 // load footer.html
 function footer() {
   return {
-    templateUrl : 'pages/footer.html',
+    templateUrl : 'public/pages/footer.html',
     scope : true,
     transclude : false
   };
