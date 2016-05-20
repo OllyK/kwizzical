@@ -1,0 +1,30 @@
+{
+  "name": "kwizzical",
+  "version": "1.0.0",
+  "description": "Create and take quizzes",
+  "main": "angularexp.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "sqlite3": "^3.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OllyK/kwizzical.git"
+  },
+  "keywords": [
+    "Quiz"
+  ],
+  "author": "George Graver, Olly King",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/OllyK/kwizzical/issues"
+  },
+  "homepage": "https://github.com/OllyK/kwizzical#readme"
+}
