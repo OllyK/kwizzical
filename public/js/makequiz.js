@@ -16,7 +16,7 @@ function formCtrl($scope, $http, $location) {
     "answer":0
   };
 
-  //needs validation(e.g. SQL injections, empty fields) before submitting
+  // add a question to the quiz JSON object
   $scope.addQuestion = function() {
     if($scope.formquiz.questions.length < 10){
       $scope.formquiz.questions.push($scope.formquestion);
@@ -27,6 +27,7 @@ function formCtrl($scope, $http, $location) {
     }
   }
 
+  // reset the form fields after adding a question
   $scope.clearFields = function() {
     $scope.formquestion = {
       "question":"",
@@ -35,10 +36,11 @@ function formCtrl($scope, $http, $location) {
     };
   }
 
+  // submit the quiz JSON object to the server
   $scope.formSubmit = function() {
     var data = $scope.formquiz;
     console.log("Submitting form: " + data);
-    
+
     $http.post("/postquiz", data)
       .success(function(data, status) {
         $location.path("/congrats");
