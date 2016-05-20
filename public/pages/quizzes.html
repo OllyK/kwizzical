@@ -6,7 +6,7 @@
 
   <div class="col-sm-3" data-ng-repeat="quiz in quizlist">
     <a
-    data-ng-href="/#/takequiz"
+    data-ng-href="/#/takequiz/{{quiz.id}}"
     data-ng-click="getQuiz(quiz.id)"
     class="btn btn-block"
     data-ng-bind="quiz.title"></a>

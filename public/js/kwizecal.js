@@ -6,23 +6,6 @@ var kwizecalApp = angular
   .directive("header", header)
   .directive("footer", footer)
 
-// Service that holds quiz data for sharing between controllers
-kwizecalApp.factory('quizService', function() {
-  var quiz = {};
-
-  return {
-    quiz:function() {
-        return quiz;
-    },
-    setQuiz: function(q) {
-        quiz = q;
-    },
-    getQuiz: function() {
-        return quiz;
-    }
-  };
-});
-
 //provides routing for each page template
 function routing($routeProvider) {
   $routeProvider
@@ -30,7 +13,7 @@ function routing($routeProvider) {
     templateUrl : 'public/pages/home.html'
   })
 
-  .when('/takequiz', {
+  .when('/takequiz/:id', {
     templateUrl : 'public/pages/takequiz.html',
     controller : 'quizCtrl'
   })
