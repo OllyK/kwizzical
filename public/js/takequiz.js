@@ -5,10 +5,6 @@ angular.module('kwizecalApp', [])
 
 function quizCtrl($scope, $http, quizService) {
 
-  //fetch JSON data from service
-  var quiz = quizService.getQuiz();
-  loadQuiz(quiz);
-
   function loadQuiz(data) {
     checkJSON(data);
     $scope.quiz = data;
@@ -51,6 +47,10 @@ function quizCtrl($scope, $http, quizService) {
     else { $scope.init(); }
   }
 
+  //fetch JSON data from service
+  var quiz = quizService.getQuiz();
+  loadQuiz(quiz);
+  
   //call to init displays start of quiz
   $scope.init();
 }

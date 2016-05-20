@@ -43,15 +43,15 @@ function routing($routeProvider) {
   .when('/makequiz', {
     templateUrl : 'public/pages/makequiz.html',
     controller : 'formCtrl'
-   })
+  })
 
-   .when('/congrats', {
-     templateUrl : 'public/pages/congrats.html'
-   })
+  .when('/congrats', {
+    templateUrl : 'public/pages/congrats.html'
+  })
 
-   .when('/about', {
-     templateUrl : 'public/pages/about.html'
-    });
+  .when('/about', {
+    templateUrl : 'public/pages/about.html'
+  });
 }
 
 // load header.html

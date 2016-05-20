@@ -1,15 +1,15 @@
-html {
+html{
 position: relative;
 min-height: 100%;
 }
 
-body {
+body{
 background: #FFFFEE;
 margin-bottom: 60px;
 }
 
 .navbar .nav,
-.navbar .nav > li {
+.navbar .nav > li{
 float:none;
 display:inline-block;
 *display:inline; /* ie7 fix */
@@ -17,22 +17,22 @@ display:inline-block;
 vertical-align: top;
 }
 
-.navbar-inner {
+.navbar-inner{
 text-align:right;
 }
 
 .navbar{
 background: #0099ff;
 min-height: 70px;
-
-}
-#buttondiv {
-	margin: auto;
-	display: block;
-	text-align: center;
 }
 
-.navbar-brand {
+#buttondiv{
+margin: auto;
+display: block;
+text-align: center;
+}
+
+.navbar-brand{
 height: 60px;
 padding: 20px 10px;
 }
@@ -52,82 +52,59 @@ color: black;
 #group_pic,
 .text-right,
 .text-left{
-	padding-bottom: 30px;
-}
-
-.button {
-height: 40px;
-width: 130px;
-margin-bottom: 3%;
-background-color: #7C8082;
-font-size: 100%;
-color: white;
-font-family: 'Muli', sans-serif;
-border-radius: 5px;
-border-color: #ffffff;
+padding-bottom: 30px;
 }
 
 .btn, .footer{
-    font-family:"News Cycle","Arial Narrow Bold",sans-serif;
-    font-weight:700;
+font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+font-weight:700;
 }
 
-.gridButton {
-height: 150px;
-width: 30%;
-background-color: #3cb53c;
-font-size: 100%;
-color: white;
-border-radius: 5px;
-border-color: #6949d7;
-margin-top:10px;
-text-decoration: none;
-font-size: 1.5em;
-text-shadow: 2px 2px 5px #111;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
+.btn-block {
+	overflow: hidden;
+	background-color: orange;
+	color: white;
+	text-overflow: ellipsis;
+	margin-bottom: 5px;
 }
 
-.gridButton a {
-font-family: 'Muli', sans-serif;
-font-weight: bold;
-border: 1px solid red;
-color: #eee;
-}
-
-.gridButton:hover {
-background-color: #60cd60;
+.btn:hover {
+	color: blue;
+	transition: 0.2s;
 }
 
 #buttonGrid{
-	text-align: center;
+text-align: center;
 }
 
 .quizButton{
-    white-space: normal;
-    padding: 15%;
-    font-size: 25px;
-    margin-bottom: 20px;
-    color: black;
-    transition: 0.5s;
+white-space: normal;
+padding: 15%;
+font-size: 25px;
+margin-bottom: 20px;
+color: black;
+transition: 0.5s;
 }
 
-
 .smallQuizButton{
-    font-size: 22px;
-    margin-bottom: 10px;
+font-size: 22px;
+margin-bottom: 10px;
+}
+
+.quizList{
+white-space: normal;
+transition: 0.5s;
 }
 
 .score{
-    color: blue;
+color: blue;
 }
 
 #total{
-    color: red;
+color: red;
 }
 
-.footer {
+.footer{
 position: absolute;
 bottom: 0;
 width: 100%;
@@ -137,41 +114,40 @@ height: 60px;
 background: #0099ff;
 }
 
-
-.footer span {
+.footer span{
 color:#fff;
 float:right;
 padding:20px 20px 0 0;
 }
 
-@media screen and (max-width: 568px) {
- .footer span {
-    font-size: 2.5vw;
-    padding:20px 20px
-  }
- .footer{
-    height:30px;
- }
+@media screen and (max-width: 568px){
+.footer span{
+font-size: 2.5vw;
+padding:20px 20px
 }
-.vcenter {
+.footer{
+height:30px;
+}
+}
+
+.vcenter{
 display: inline-block;
 vertical-align: middle;
 float: none;
 }
 
-.col-sm-0 {
-    width: 0px;
-    float: left;
-    overflow: hidden;
-    margin: 0px;
-    padding: 0px;
-    min-height: 1px;
+.col-sm-0{
+width: 0px;
+float: left;
+overflow: hidden;
+margin: 0px;
+padding: 0px;
+min-height: 1px;
 }
 
 .col-sm-3, .col-sm-6, .col-sm-2{
-  -webkit-transition: all ease .3s;
-    -moz-transition: all ease .3s;
-    -o-transition: all ease .3s;
-    transition: all ease .3s;
+-webkit-transition: all ease .3s;
+-moz-transition: all ease .3s;
+-o-transition: all ease .3s;
+transition: all ease .3s;
 }
-
