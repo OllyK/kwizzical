@@ -54,3 +54,12 @@ function quizCtrl($scope, $http, quizService) {
   //call to init displays start of quiz
   $scope.init();
 }
+
+//check JSON data is in the correct format(4 choices per question etc.)
+function checkJSON(data) {
+  for(var i = 0; i < data.length; i++) {
+    if(data[i].choices.length != 4) {
+      console.log("Error: question " +  i + " has incorrect number of choices.");
+    }
+  }
+}
