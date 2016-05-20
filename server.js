@@ -57,6 +57,7 @@ function handle(request, response) {
           });
 
           request.on('end', function() {
+              console.log("Server posting: " + body);
               postquiztodb(body);
               redirect(response, url, type);
           });
@@ -64,13 +65,13 @@ function handle(request, response) {
     }
     else {
       if (url == '/quizlist') {
-  //      request.on('data', function(data) {
-    //        console.log("Fetching quizzes...");
-            getQuizList(response);
-      //  });
-      //  request.on('end', function() {
-//            replyJson(response, url, type, content);
-      //  });
+        getQuizList(response);
+      }
+      else if(url.startsWith('/getquiz')) {
+        console.log("getquiz request made...");
+        var splitstr = url.split("/");
+        var id = splitstr[splitstr.length-1];
+        getQuiz(id, response);
       }
       else {
         url = removeQuery(url);
@@ -90,20 +91,24 @@ function handle(request, response) {
 //post quiz to db
 function postquiztodb(body) {
     var database = new sqlite3.Database('mydb.db');
-
-      var postData = database.serialize(function() {
-        var json = JSON.parse(body);
+    var json = JSON.parse(body);
+    var postData = database.serialize(function() {
         database.run("INSERT INTO Quiz(title, quiz) VALUES (?, ?)", json.title, body);
     });
 }
 
 function getQuizList(response) {
-
+    console.log("Fetching quiz list...");
     var database = new sqlite3.Database('mydb.db');
-    var ql = {quizzes: []};
-
     var getdata = database.serialize(function() {
-    database.all("SELECT id, title FROM Quiz", replyJson.bind(null, response, 'application/json'));
+        database.all("SELECT id, title FROM Quiz", replyJson.bind(null, response, 'application/json'));
+    });
+}
+
+function getQuiz(id, response) {
+    var database = new sqlite3.Database('mydb.db');
+    var getdata = database.serialize(function() {
+        database.get("SELECT quiz FROM Quiz WHERE id = ?", id, replyJson2.bind(null, response, 'application/json'));
     });
 }
 
@@ -193,11 +198,28 @@ function redirect(response, url, type) {
     response.end();
 }
 
+// Deliver a JSON object to the browser
 function replyJson(response, type, err, content) {
-    console.log("replyJson", content);
+    console.log("Replying with JSON object: " + content);
+    var str = JSON.stringify(content);
+    console.log("Stringified: " + str);
     var typeHeader = { 'Content-Type': type };
     response.writeHead(OK, typeHeader);
-    response.write(JSON.stringify(content));
+    response.write(str);
+    response.end();
+}
+
+// Deliver a JSON object to the browser
+function replyJson2(response, type, err, content) {
+    var thing = content.quiz;
+    console.log("Thing: " + thing);
+    console.log("Replying with Quiz: " + content);
+    console.log("Type: " + typeof(content));
+    var str = JSON.stringify(content);
+    console.log("Stringified: " + str);
+    var typeHeader = { 'Content-Type': type };
+    response.writeHead(OK, typeHeader);
+    response.write(thing);
     response.end();
 }
 
