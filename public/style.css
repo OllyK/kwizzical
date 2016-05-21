@@ -60,15 +60,15 @@ padding-bottom: 30px;
 .btn, .footer{
 font-family:"News Cycle","Arial Narrow Bold",sans-serif;
 font-weight:700;
+border-radius: 0px;
 }
 
-.btn-block {
+.quiz-list-button {
 	overflow: hidden;
 	background-color: orange;
 	color: white;
 	text-overflow: ellipsis;
 	margin-bottom: 5px;
-	border-radius: 0px;
 }
 
 .btn:hover {
@@ -76,27 +76,56 @@ font-weight:700;
 	transition: 0.2s;
 }
 
-#buttonGrid{
-text-align: center;
-}
-
 .quizButton{
 white-space: normal;
-padding: 15%;
+padding: 12%;
 font-size: 25px;
 margin-bottom: 20px;
 color: black;
-transition: 0.5s;
+transition: 0.2s;
+}
+
+.quizButton:hover {
+	color: white;
+	transition: 0.2s;
+}
+
+.control-label{
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+	font-size: 1.5em;
+	color: black;
+}
+
+::-webkit-input-placeholder {
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+ color: #d0cdfa;
+ text-transform: uppercase;
+ font-weight: bold;
+}
+:-moz-placeholder { /* older Firefox*/
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+ 
+ color: #d0cdfa;
+ text-transform: uppercase;
+ font-weight: bold;
+}
+::-moz-placeholder { /* Firefox 19+ */ 
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+ 
+ color: #d0cdfa; 
+ text-transform: uppercase;
+ font-weight: bold;
+} 
+:-ms-input-placeholder { 
+
+ color: #d0cdfa;
+ text-transform: uppercase;
+ font-weight: bold;
 }
 
 .smallQuizButton{
 font-size: 22px;
 margin-bottom: 10px;
-}
-
-.quizList{
-white-space: normal;
-transition: 0.5s;
 }
 
 .score{
