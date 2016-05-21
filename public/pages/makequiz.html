@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
-        <h1>Create a Kwiz</h1>
+        <h1 id="create-quiz-title">Create a Kwiz</h1>
         <h3 class="col-sm-12 text-center">Enter questions and answers to create your own quiz. How exciting!</h3>
       </div>
     </div>
@@ -64,15 +64,13 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-6 text-right">
-            <input type ="button" class="btn btn-primary"
+            <input type ="button" class="btn btn-primary form-button"
                    data-ng-click="addQuestion()"
-                   id="tp_left_button"
                    value="Add Question"></input>
           </div>
           <div class="col-xs-6 text-left">
             <input type="submit"
-                   class="btn btn-success"
-                   id="tp_right_button"
+                   class="btn btn-success form-button"
                    value="Done"></input>
           </div>
         </div>
