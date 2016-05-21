@@ -1,3 +1,4 @@
+<!-- Page that allows user to take a quiz -->
 <div data-ng-controller="quizCtrl" class="container">
   <!-- better to use ng-bind than {{ }}
   http://stackoverflow.com/questions/16125872/angularjs-why-ng-bind-is-better-than-in-angular -->
@@ -9,17 +10,20 @@
     </div>
     <div class="row">
       <div class="col-sm-6 text-center">
-        <h3 id="question-number">
+        <!-- Display the qustion number -->
+        <h3 class="question">
         Question <span data-ng-bind="i+1"></span>
         of <span data-ng-bind="quiz.questions.length"></span>:
         </h3>
       </div>
+      <!-- Display the current score out of number attempted -->
       <div class="col-sm-6 text-center">
-        <h3 id="question-score" data-ng-bind="msg + score + '/' + (i + 1)">/
+        <h3 class="question" data-ng-bind="msg + score + '/' + (i + 1)">/
         <span data-ng-bind="i"></span></h3>
       </div>
     </div>
     <div class="row">
+      <!-- When finished display a message -->
       <div class="col-sm-6 text-center">
         <h3 id="end-message" data-ng-show="!running">End of Kwiz!</h3>
       </div>
@@ -40,6 +44,7 @@
       </div>
     </div>
     <div class="row">
+      <!-- Apply a class depending on the index to show different coloured buttons -->
       <div class="col-sm-6" data-ng-repeat="c in quiz.questions[i].choices">
         <a href=""
           class="btn btn-block quizButton"

@@ -166,9 +166,8 @@ function redirect(response, url, type) {
 
 // Deliver a JSON object to the browser
 function replyJson(response, type, err, content) {
-    console.log("Replying with JSON object: " + content);
     var str = JSON.stringify(content);
-    console.log("Stringified: " + str);
+    console.log("Replying with JSON object...");
     var typeHeader = { 'Content-Type': type };
     response.writeHead(OK, typeHeader);
     response.write(str);
@@ -178,11 +177,8 @@ function replyJson(response, type, err, content) {
 // Deliver a JSON object to the browser
 function replyJson2(response, type, err, content) {
     var thing = content.quiz;
-    console.log("Thing: " + thing);
-    console.log("Replying with Quiz: " + content);
-    console.log("Type: " + typeof(content));
     var str = JSON.stringify(content);
-    console.log("Stringified: " + str);
+    console.log("Replying with Quiz...");
     var typeHeader = { 'Content-Type': type };
     response.writeHead(OK, typeHeader);
     response.write(thing);
@@ -313,14 +309,16 @@ function check(x, out, message) {
 
 // function that sets up schema for database
 function db_setup() {
-    var db = new sqlite3.Database('./private/mydb.db');
-    var setup = db.serialize(function() {
-        db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, title TEXT NOT NULL, quiz TEXT NOT NULL)");
+    console.log("Setting up DB...");
+    var database = new sqlite3.Database('./private/mydb.db');
+    var setup = database.serialize(function() {
+        database.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, title TEXT NOT NULL, quiz TEXT NOT NULL)");
     });
 }
 
 // post quiz to db
 function postquiztodb(body) {
+  console.log("Posting Quiz to DB...");
   var database = new sqlite3.Database('./private/mydb.db');
   var json = JSON.parse(body);
   var postData = database.serialize(function() {

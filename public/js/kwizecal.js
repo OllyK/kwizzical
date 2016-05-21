@@ -1,3 +1,4 @@
+// Main angular app for Kwizical website
 "use strict";
 
 var kwizecalApp = angular

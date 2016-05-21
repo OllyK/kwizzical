@@ -1,3 +1,4 @@
+// Module in charge of making a quiz
 "use strict";
 
 angular.module('kwizecalApp', [])

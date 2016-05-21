@@ -1,7 +1,8 @@
+<!-- Page which displays the form so that a user can create a quiz -->
+<!-- The form controller then creates a JSON object to post to database -->
 <div data-ng-controller="formCtrl"
-     class="container"
-     id="quiz">
-
+  class="container"
+  id="quiz">
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
@@ -9,73 +10,64 @@
         <h3 class="col-sm-12 text-center">Enter questions and answers to create your own quiz. How exciting!</h3>
       </div>
     </div>
-
     <!--form-->
     <form class="form-horizontal"
-          role="form"
-          data-ng-submit="formSubmit()">
+      role="form"
+      data-ng-submit="formSubmit()">
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-
-        <!--Title-->
+          <!--Title-->
           <div class="form-group">
             <label class="control-label text-center"
-                   for="question">Kwiz Title:</label>
+            for="question">Kwiz Title:</label>
             <input type="text"
-                   data-ng-model="formquiz.title"
-                   class="form-control"
-                   placeholder="What would you like to call your quiz?"/>
+            data-ng-model="formquiz.title"
+            class="form-control"
+            placeholder="What would you like to call your quiz?"/>
           </div>
-
-
           <!--question-->
           <div class="form-group">
             <label class="control-label text-center"
-                   for="question">Question:</label>
+            for="question">Question:</label>
             <input type="text"
-                   data-ng-model="formquestion.question"
-                   class="form-control"
-                   placeholder="Enter your question here"/>
+            data-ng-model="formquestion.question"
+            class="form-control"
+            placeholder="Enter your question here"/>
           </div>
-
           <!--choices-->
           <div class="form-group" data-ng-repeat="c in formquestion.choices track by $index">
             <label class="control-label text-center"
-                   for="choice">Answer <span data-ng-bind="$index + 1"></span>:</label>
-            <input type="text"
-                   data-ng-model="formquestion.choices[$index].choice"
-                   class="form-control"
-                   placeholder="Enter your answer here" />
-          </div>
-
-          <!--radio button-->
-          <div class="form-group radio">
-            <h4>Correct answer:</h4>
-            <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="0" checked="true" />1</label>
-            <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="1" checked="true" />2</label>
-            <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="2" checked="true" />3</label>
-            <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="3" checked="true" />4</label>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- buttons -->
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6 text-right">
-            <input type ="button" class="btn btn-primary form-button"
-                   data-ng-click="addQuestion()"
-                   value="Add Question"></input>
-          </div>
-          <div class="col-xs-6 text-left">
-            <input type="submit"
-                   class="btn btn-success form-button"
-                   value="Done"></input>
+              for="choice">Answer <span data-ng-bind="$index + 1"></span>:</label>
+              <input type="text"
+              data-ng-model="formquestion.choices[$index].choice"
+              class="form-control"
+              placeholder="Enter your answer here" />
+            </div>
+            <!--radio button-->
+            <div class="form-group radio">
+              <h4>Correct answer:</h4>
+              <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="0" checked="true" />1</label>
+              <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="1" checked="true" />2</label>
+              <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="2" checked="true" />3</label>
+              <label class="radio-inline"><input type="radio" name="correct" data-ng-model="formquestion.answer" data-ng-value="3" checked="true" />4</label>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-
+        <!-- buttons -->
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-6 text-right">
+              <input type ="button" class="btn btn-primary form-button"
+              data-ng-click="addQuestion()"
+              value="Add Question"></input>
+            </div>
+            <div class="col-xs-6 text-left">
+              <input type="submit"
+              class="btn btn-success form-button"
+              value="Done"></input>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
