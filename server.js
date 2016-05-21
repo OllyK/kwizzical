@@ -313,7 +313,7 @@ function check(x, out, message) {
 
 // function that sets up schema for database
 function db_setup() {
-    var db = new sqlite3.Database('private/mydb.db');
+    var db = new sqlite3.Database('./private/mydb.db');
     var setup = db.serialize(function() {
         db.run("CREATE TABLE if not exists Quiz (id INTEGER PRIMARY KEY, title TEXT NOT NULL, quiz TEXT NOT NULL)");
     });
@@ -321,7 +321,7 @@ function db_setup() {
 
 // post quiz to db
 function postquiztodb(body) {
-  var database = new sqlite3.Database('private/mydb.db');
+  var database = new sqlite3.Database('./private/mydb.db');
   var json = JSON.parse(body);
   var postData = database.serialize(function() {
     database.run("INSERT INTO Quiz(title, quiz) VALUES (?, ?)", json.title, body);
@@ -331,7 +331,7 @@ function postquiztodb(body) {
 // get full list of quiz ids and titles
 function getQuizList(response) {
   console.log("Fetching quiz list...");
-  var database = new sqlite3.Database('private/mydb.db');
+  var database = new sqlite3.Database('./private/mydb.db');
   var getdata = database.serialize(function() {
     database.all("SELECT id, title FROM Quiz", replyJson.bind(null, response, 'application/json'));
   });
@@ -339,7 +339,7 @@ function getQuizList(response) {
 
 // get a quiz by id
 function getQuiz(id, response) {
-  var database = new sqlite3.Database('private/mydb.db');
+  var database = new sqlite3.Database('./private/mydb.db');
   var getdata = database.serialize(function() {
     database.get("SELECT quiz FROM Quiz WHERE id = ?", id, replyJson2.bind(null, response, 'application/json'));
   });
