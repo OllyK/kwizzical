@@ -1,43 +1,43 @@
 @import url("https://fonts.googleapis.com/css?family=Pacifico:400,700");
 
 html{
-position: relative;
-min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 
 body{
-background: #FFFFEE;
-margin-bottom: 60px;
+	background: #FFFFEE;
+	margin-bottom: 60px;
 }
 
 .navbar .nav,
 .navbar .nav > li{
-float:none;
-display:inline-block;
-*display:inline; /* ie7 fix */
-*zoom:1; /* hasLayout ie7 trigger */
-vertical-align: top;
+	float:none;
+	display:inline-block;
+	*display:inline; /* ie7 fix */
+	*zoom:1; /* hasLayout ie7 trigger */
+	vertical-align: top;
 }
 
 .navbar-inner{
-text-align:right;
+	text-align:right;
 }
 
 .navbar{
-background: #0099ff;
-min-height: 70px;
+	background: #0099ff;
+	min-height: 70px;
 }
 
 .navbar-brand{
-height: 60px;
-padding: 20px 10px;
+	height: 60px;
+	padding: 20px 10px;
 }
 
 .navbar-brand svg{
-margin-top: none;
-height:50px;
-width:160px;
-padding-left: 10px;
+	margin-top: none;
+	height:50px;
+	width:160px;
+	padding-left: 10px;
 }
 
 .front_page_title{
@@ -46,21 +46,20 @@ padding-left: 10px;
 }
 
 .kwizzicowl-front{
-padding: 40px;
-color: black;
+	padding: 40px;
+	color: black;
 }
 
 /*padding below kqizzicowl*/
 #kwizzicowl-front,
 .text-right,
 .text-left{
-padding-bottom: 30px;
+	padding-bottom: 30px;
 }
 
 .btn, .footer{
-font-family:"News Cycle","Arial Narrow Bold",sans-serif;
-font-weight:700;
-border-radius: 0px;
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+	font-weight:700;
 }
 
 .quiz-list-button {
@@ -71,25 +70,44 @@ border-radius: 0px;
 	margin-bottom: 5px;
 }
 
+.btn{
+	border-radius: 0px;
+	border-width: 2px;
+	border-color: black;
+	box-shadow: 5px 5px 5px #888888;
+}
+
 .btn:hover {
 	color: blue;
+	border-width: 2px;
+	border-color: black;
 	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: all ease 0.2s;
+	-o-transition: all ease 0.2s;
 }
 
 .quizButton{
-white-space: normal;
-padding: 12%;
-font-size: 25px;
-margin-bottom: 20px;
-color: black;
-transition: 0.2s;
+	white-space: normal;
+	padding: 12%;
+	font-size: 25px;
+	margin-bottom: 20px;
+	color: black;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: all ease 0.2s;
+	-o-transition: all ease 0.2s;
 }
 
 .quizButton:hover {
 	color: white;
 	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: all ease 0.2s;
+	-o-transition: all ease 0.2s;
 }
 
+/*styling for the create quiz form*/
 .control-label{
 	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
 	font-size: 1.5em;
@@ -98,88 +116,89 @@ transition: 0.2s;
 
 ::-webkit-input-placeholder {
 	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
- color: #d0cdfa;
- text-transform: uppercase;
- font-weight: bold;
+	font-weight: bold;
 }
 :-moz-placeholder { /* older Firefox*/
 	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
- 
- color: #d0cdfa;
- text-transform: uppercase;
- font-weight: bold;
+	font-weight: bold;
 }
 ::-moz-placeholder { /* Firefox 19+ */ 
 	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
- 
- color: #d0cdfa; 
- text-transform: uppercase;
- font-weight: bold;
+	font-weight: bold;
 } 
 :-ms-input-placeholder { 
-
- color: #d0cdfa;
- text-transform: uppercase;
- font-weight: bold;
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+	font-weight: bold;
 }
 
+input{
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+	font-weight: bold;
+}
+.radio-inline{
+	font-family:"News Cycle","Arial Narrow Bold",sans-serif;
+	font-weight: bold;
+	padding: 40px;
+}
+
+
 .smallQuizButton{
-font-size: 22px;
-margin-bottom: 10px;
+	font-size: 22px;
+	margin-bottom: 10px;
 }
 
 .score{
-color: blue;
+	color: blue;
 }
 
 #total{
-color: red;
+	color: red;
 }
 
 .footer{
-position: absolute;
-bottom: 0;
-width: 100%;
-display: table;
-table-layout: fixed;
-height: 60px;
-background: #0099ff;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	height: 60px;
+	background: #0099ff;
 }
 
 .footer span{
-color:#fff;
-float:right;
-padding:20px 20px 0 0;
+	color:#fff;
+	float:right;
+	padding:20px 20px 0 0;
 }
 
 @media screen and (max-width: 568px){
-.footer span{
-font-size: 2.5vw;
-padding:20px 20px
-}
-.footer{
-height:30px;
-}
+	.footer span{
+		font-size: 2.5vw;
+		padding:20px 20px
+	}
+	.footer{
+		height:30px;
+	}
 }
 
 .vcenter{
-display: inline-block;
-vertical-align: middle;
-float: none;
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
 }
 
 .col-sm-0{
-width: 0px;
-float: left;
-overflow: hidden;
-margin: 0px;
-padding: 0px;
-min-height: 1px;
+	width: 0px;
+	float: left;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	min-height: 1px;
 }
 
 .col-sm-3, .col-sm-6, .col-sm-2{
--webkit-transition: all ease .3s;
--moz-transition: all ease .3s;
--o-transition: all ease .3s;
-transition: all ease .3s;
+	-webkit-transition: all ease .3s;
+	-moz-transition: all ease .3s;
+	-o-transition: all ease .3s;
+	transition: all ease .3s;
 }
