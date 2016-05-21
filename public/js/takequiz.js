@@ -1,3 +1,4 @@
+//Controller that deals with taking a quiz wrapped in a JSON object
 "use strict";
 
 angular.module('kwizecalApp', [])

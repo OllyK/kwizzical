@@ -1,3 +1,4 @@
+// Controller for the list of quizzes
 "use strict";
 
 angular.module('kwizecalApp', [])
