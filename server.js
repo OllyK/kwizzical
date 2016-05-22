@@ -209,7 +209,7 @@ function ends(s, x) { return s.indexOf(x, s.length-x.length) >= 0; }
 
 // Avoid delivering the server source file.  Also call banUpperCase.
 function defineBanned() {
-    var banned = ["/server.js"];
+    var banned = ["/server.js", "/private/mydb.db"];
     banUpperCase(".", banned);
     return banned;
 }
