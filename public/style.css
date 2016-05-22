@@ -28,14 +28,13 @@ body{
 
 .navbar-brand{
 	height: 60px;
-	padding: 20px 10px;
+	padding: 10px 10px 20px 20px;
 }
 
 .navbar-brand svg{
 	margin-top: none;
 	height:50px;
-	width:160px;
-	padding-left: 10px;
+	width:220px;
 }
 
 .page-title {
