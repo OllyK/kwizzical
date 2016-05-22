@@ -9,7 +9,7 @@ function animationCtrl($scope){
   // Wait for the content to be loaded
   $scope.$on('$includeContentLoaded',function () {
     // for each path in the SVG, get the path by id and the path length
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 7; i++) {
        var path = document.querySelector('#i' + i);
        var length = path.getTotalLength();
        path.style.transition = path.style.WebkitTransition = path.style.MozTransition = 'none';
